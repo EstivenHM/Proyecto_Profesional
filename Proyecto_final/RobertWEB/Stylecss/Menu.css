@@ -9,8 +9,8 @@ body {
   font-family: "Times New Roman", Times, serif;
   text-transform: capitalize;
 }
-/*-------------barra lateral----------*/
 
+/*-------------barra lateral----------*/
 .slide {
   height: 100%;
   width: 320px;
@@ -111,6 +111,7 @@ input {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 ul li:hover a {
   color: #ffffff;
   padding-left: 6px;
@@ -169,6 +170,7 @@ input:checked ~ .slide {
   margin-right: 10px;
   font-size: 35px;
 }
+
 .submenu-content li a {
   display: flex;
   align-items: center;
@@ -192,7 +194,6 @@ input:checked ~ .slide {
 }
 
 /*-------------Header----------*/
-
 header {
   background: linear-gradient(to top, #19669D, #1E7DC2);
   padding: 33.3px 0;
@@ -232,7 +233,6 @@ header {
 }
 
 .botones {
-
   display: flex;
   justify-content: center;
   gap: 100px;
@@ -241,22 +241,22 @@ header {
 
 .boton {
   display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;  /* Establece un ancho fijo para todos los botones */
-    height: 150px;  /* Establece una altura fija */
-    padding: 12px 20px;
-    font-size: 27px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    background-color: #9d9380;
-    border-radius: 8px;
-    transition: 0.3s ease, transform 0.2s ease;
+  justify-content: center;
+  align-items: center;
+  width: 300px;  /* Establece un ancho fijo para todos los botones */
+  height: 150px;  /* Establece una altura fija */
+  padding: 12px 20px;
+  font-size: 27px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #9d9380;
+  border-radius: 8px;
+  transition: 0.3s ease, transform 0.2s ease;
 }
 
-.botones  a i {
+.botones a i {
   margin-right: 10px; /* Espacio y tamano del icono*/
   font-size: 35px;
 }
@@ -267,6 +267,71 @@ header {
   color: #9d9380;
   transform: scale(1.05);
 }
+
+/*-------------FOOTER----------*/
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer {
+  background-color: #24262b;
+  padding: 20px 0;
+}
+
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-links {
+  width: 25%;
+  padding: 0 15px;
+}
+
+.footer-links h4 {
+  font-size: 20px;
+  color: #ffffff;
+  margin-bottom: 25px;
+  font-weight: 500;
+  border-bottom: 2px solid #afa081;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.footer-links ul li a {
+  font-size: 18px;
+  text-decoration: none;
+  color: #bbbbbb;
+  display: block;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #ffffff;
+  padding-left: 6px;
+}
+
+.social-links a {
+  display: inline-block;
+  min-height: 40px;
+  width: 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 10px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #ffffff;
+  transition: all 0.5s ease;
+}
+
+.social-links a:hover {
+  background-color: #00c3ff;
+}
+
+/* Media queries para hacer la página responsiva */
+@media (max-width: 
 /*-------------FOOTER----------*/
 .container {
   max-width: 1200px;
