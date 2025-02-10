@@ -1,0 +1,171 @@
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+body{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("../Imagenes/login.png") no-repeat center center;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.container {
+
+    width: 420px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter:blur(20px) ;
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.container h1{
+
+    font-size: 36px;
+    text-align: center; 
+}
+
+.container .input-box{
+
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin:30px 0;
+    
+     
+}
+
+.input-box input{
+
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;;
+    color:#fff;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder{
+
+    color: #fff;
+}
+
+.input-box i {
+
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.container .Forgot-password {
+
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin: -15px 0 15px;
+}
+
+.Forgot-password a{
+
+    color: #fff;
+    text-decoration: none;
+}
+
+.Forgot-password a:hover{
+
+    text-decoration: underline;
+    color:cornflowerblue;
+}
+
+.container .btn {
+
+    width: 100%;
+    height: 45px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: black;
+    font-weight: 600;
+}
+
+.container .contact{
+
+    font-size: 15px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.contact p a {
+
+    color:#fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact p a:hover{
+
+    text-decoration: underline;
+    color:cornflowerblue;
+}
+
+/* Fondo del modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+}
+
+/* Botón de cierre */
+.close-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.close-link:hover {
+    background-color: #d32f2f;
+    cursor: pointer;
+}
+

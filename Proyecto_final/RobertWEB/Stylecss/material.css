@@ -1,0 +1,93 @@
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+header{
+
+    background-color: rgb(19, 65, 149);;
+    padding: 2rem 0;
+    color:#efefef;
+    text-align: center;
+    font-size: 2rem;  
+    
+}
+.inicio {
+    position: absolute; /* Permite posicionar el elemento de forma precisa */
+    top: 40px; /* Ajusta la distancia desde la parte superior */
+    right: 2rem; /* Ajusta la distancia desde el lado derecho */
+    color: #efefef;
+    font-size: 3rem; /* Tamaño del icono */
+    text-decoration: none; /* Elimina subrayado si lo tiene */
+}
+
+.inicio i {
+    display: inline-block; /* Asegura que el ícono se comporte como un elemento bloque en línea */
+}
+
+
+
+footer{
+
+    background-color: rgb(19, 65, 149);;
+    padding: 2rem 2rem;
+    color:#efefef;
+    text-align: center;
+   
+}
+
+.contactos {
+    text-align: center; /* Centra todo el contenido dentro del contenedor */
+    padding: 1rem; /* Espaciado interno para mayor separación */
+    color: #ffffff; /* Color del texto */
+}
+
+.mail{
+
+    font-size: 1.2rem; /* Tamaño de la fuente */
+    margin: 1rem 0; /* Espaciado superior e inferior */
+    text-align: center; /* Centrar el texto dentro de su contenedor */ 
+}
+
+.mail a {
+    color: #9e40bd; /* Color del texto del enlace */
+    text-decoration: none; /* Elimina subrayados */
+   
+    transition: color 0.3s ease; /* Añade una transición suave al cambiar el color */
+}
+
+.mail a:hover {
+    color: #b82bce; /* Cambia el color al pasar el mouse sobre el enlace */
+}
+
+.contactos a {
+    text-decoration: none; /* Elimina subrayados */
+    color: #ffffff; /* Color de los enlaces */
+    margin: 0 1rem; /* Espaciado horizontal entre enlaces */
+    font-size: 1.5rem; /* Tamaño de los iconos */
+    display: inline-block; /* Asegura que los enlaces se alineen uno junto al otro */
+    transition: color 0.3s ease; /* Animación al pasar el mouse */
+}
+
+.contactos i {
+    margin-right: 0.5rem; /* Espaciado entre el icono y el texto */
+    font-size: 2rem;
+}
+
+.whatsapp :hover{
+
+    color: chartreuse;
+}
+
+.youtube :hover{
+
+    color: red;
+}
+
+.instagram :hover{
+
+    color: deeppink;
+}
