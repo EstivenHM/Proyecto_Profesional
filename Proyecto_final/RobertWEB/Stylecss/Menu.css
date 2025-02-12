@@ -330,8 +330,7 @@ header {
   background-color: #00c3ff;
 }
 
-/* Media queries para hacer la página responsiva */
-@media (max-width: 
+
 /*-------------FOOTER----------*/
 .container {
   max-width: 1200px;
@@ -391,7 +390,7 @@ header {
 }
 
 .social-links a:hover {
-  background-color: #00c3ff;
+  background-color: #afa081;
 }
 
 @media (max-width: 991px) {

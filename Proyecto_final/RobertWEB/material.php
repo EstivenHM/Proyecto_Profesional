@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="Stylesheet" href="Stylecss/material.css">
+    <link rel="Stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,28 +15,55 @@
 
 <body>
 
-    <header>
-        <h1 id="titulo">Material disponible</h1>
-        <a class="inicio" href="Homepage.php"><i class='bx bxs-home'></i></a>
+<header>
+        <h1 id="titulo">Bienvenido Estiven</h1>
+        <div class="Menu-header">
+            <a href="Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
+        </div>
     </header>
     <seccion>
-        <div class="usuario">
+        <div class="Home">
 
 
         </div>
     </seccion>
-    <footer>
+    <footer class="footer">
 
-        <div class="contactos">
-            <p class="history">Aprendí Inglés en Estados Unidos desde 1989 y hoy somos Robert English Coach.</p>
-            <p class="mail"><a href="mailto:estivenhm1@gmail.com">Contact me</a></p>
-            <a class="instagram" href="https://www.instagram.com/robertenglishcoach/"><i class='bx bxl-instagram-alt'></i></a>
-            <a class="youtube" href="https://www.youtube.com/@rocascante11"><i class='bx bxl-youtube'></i></a>
-            <a class="whatsapp" href="https://wa.me/+50683427778"><i class='bx bxl-whatsapp'></i></i></a>
-            <p class="copyright">@Copyright 2024</p>
+<div class="container">
+    <div class="footer-row">
+        <div class="footer-links">
+
+            <h4>Acerca de</h4>
+            <ul>
+                <li><a href="#">Nosotros</a></li>
+                <li><a href="#">Mision</a></li>
+                <li><a href="#">Vision</a></li>
+            </ul>
         </div>
 
-    </footer>
+        <div class="footer-links">
+            <h4> Ayuda </h4>
+            <ul>
+                <li><a href="#">Manual de uso</a></li>
+                <li><a href="#">contactanos</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-links">
+            <h4> Siguenos </h4>
+            <div class="social-links">
+                <a href="https://www.facebook.com/roberto.english.94" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/robertenglishcoach/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@rocascante11" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@robertenglishcoach?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</footer>
 </body>
 
 </html>

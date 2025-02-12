@@ -53,7 +53,7 @@
                 </div>
 
                 <button type="submit" class="btn"> Guardar usuario</button>
-            </form>
+
         </div>
 
         </div>
