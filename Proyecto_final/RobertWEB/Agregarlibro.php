@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="Stylesheet" href="Stylecss/gestionmaterial.css">
+    <link rel="Stylesheet" href="Stylecss/Gestionmaterial.css">
     <link rel="Stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,12 +25,35 @@
     <seccion>
         <div class="Home">
 
-            <div class="Subirlibro"></div>
+            <div class="subirlibro">
 
             <form action="procesararchivo.php" method="post" enctype="multipart/form-data">
-                <input type="file" name="archivo" id="archivo">
-                <button type="submit">Subir</button>
+                <input type="file" name="archivo" id="archivo" class="archivo">
+                <div class="botones">
+                <button type="boton" class="boton"><i class='bx bxs-save'></i>Guardar</button>
+                <button type="boton" class="boton"><i class='bx bxs-trash'></i>Borrar</button>
+                <button type="boton" class="boton"><i class='bx bxs-x-circle'></i>Cancelar</button>
+                </div>
             </form>
+            </div>
+            <div class="listview">
+            <ul class="lista">
+            <?php
+            if ($result->num_rows > 0) {
+                // Salida de datos de cada fila
+                while($row = $result->fetch_assoc()) {
+                    echo "<li class='item'>" . $row["nombre"] . "</li>";
+                }
+            } else {
+                echo "<li class='item'>No hay datos disponibles</li>";
+            }
+            $conn->close();
+            ?><li class="item">Item 1</li>
+            <li class="item">Item 2</li>
+            <li class="item">Item 3</li>
+            <!-- Agrega más elementos según sea necesario -->
+        </ul>
+            </div>
         </div>
     </seccion>
 
