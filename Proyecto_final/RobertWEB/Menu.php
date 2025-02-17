@@ -38,7 +38,7 @@ session_start();
                     <ul class="submenu-content">
                         <li><a href="#" ><i class='bx bxs-user-detail'></i>Usuarios</a></li>
                         <li><a href="Crearusuario.php" ><i class='bx bxs-user-plus'></i>Nuevo usuario</a></li>
-                        <li><a href="#" ><i class='bx bxs-category'></i>Roles</a></li>
+                        <li><a href="Roles.php" ><i class='bx bxs-category'></i>Roles</a></li>
                         <li><li><a href="#" ><i class='bx bxs-key'></i>Permisos</a></li></li>
 
                     </ul>
