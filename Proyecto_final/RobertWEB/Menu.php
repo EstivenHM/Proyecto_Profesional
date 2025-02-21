@@ -2,8 +2,9 @@
 session_start();
 if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
     header('Location: index.php');
-    exit();
+    exit(); 
 }
+$username = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +56,7 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
                 </ul>
             </div>
         </label>
-        <h1 id="titulo">Bienvenido Estiven</h1>
+        <h1 id="titulo">Bienvenido <?php echo htmlspecialchars($username);?></h1>
         <div class="Menu-header">
             <a href="Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
         </div>

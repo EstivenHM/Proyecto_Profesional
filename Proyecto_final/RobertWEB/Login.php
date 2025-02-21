@@ -14,7 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $filas = $resultado->num_rows;
 
     if ($filas > 0) {
-        $_SESSION['authenticated'] = true; // Establecer la variable de sesión
+        $usuario = $resultado->fetch_assoc();
+        $_SESSION['authenticated'] = true;
+        $_SESSION['username'] = $usuario['Nombre'];
         header("Location: Menu.php");
         exit();
     } else {
