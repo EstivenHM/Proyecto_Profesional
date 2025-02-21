@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+include('lista_usuarios.php');
+$result = display_data();
+/*
+$query = "Select * from usuarios";
+$result = mysqli_query($conexion,$query);
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    
+
 
     <title>Usuarios</title>
 </head>
@@ -26,6 +36,44 @@
 
     <section>
         <div class="Home">
+            <div class="a_body">
+                <table class="table">
+                    <thead>
+                        <tr class="titulo">
+                            <td>ID User</td>
+                            <td>Tipo de Cédula</td>
+                            <td>Cédula</td>
+                            <td>Nombre</td>
+                            <td>Apellido</td>
+                            <td>Apellido</td>
+                            <td>Correo</td>
+                            <td>Teléfono</td>
+                            <td>Estado</td>
+                            <td>Nivel</td>
+                            <td>Rol</td>
+                            <td>Editar</td>
+                        </tr>
+                    </thead>
+                    <tbody class="t_body">
+                        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <tr>
+                                <td><?php echo $row['Id_usuario'] ?></td>
+                                <td><?php echo $row['Tipo_cedula'] ?></td>
+                                <td><?php echo $row['Cedula'] ?></td>
+                                <td><?php echo $row['Nombre'] ?></td>
+                                <td><?php echo $row['Apellido_1'] ?></td>
+                                <td><?php echo $row['Apellido_2'] ?></td>
+                                <td><?php echo $row['Correo'] ?></td>
+                                <td><?php echo $row['Telefono'] ?></td>
+                                <td><?php echo $row['Estado'] ?></td>
+                                <td><?php echo $row['Nivel'] ?></td>
+                                <td><?php echo $row['Rol'] ?></td>
+                                <td><a href="#" class="boton"><i class='bx bxs-edit'></i>Editar</a></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     </section>
@@ -52,7 +100,7 @@
                     </ul>
                 </div>
 
-                <div class="footer-links"> 
+                <div class="footer-links">
                     <h4> Siguenos </h4>
                     <div class="social-links">
                         <a href="https://www.facebook.com/roberto.english.94" target="_blank"><i class="fab fa-facebook-f"></i></a>
