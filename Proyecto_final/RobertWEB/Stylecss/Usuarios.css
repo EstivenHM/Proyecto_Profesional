@@ -48,12 +48,66 @@ header {
   flex-direction: column; /* Añadido para centrar verticalmente en dispositivos pequeños */
 }
 
+.btn-boton {
+  display: flex;
+  justify-content: flex-end; /* Mueve el botón a la derecha */
+  width: 78%;
+  margin-top: 10px;
+}
+
+.btn-boton .btn-refrescar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 110px; /* Establece un ancho fijo para todos los botones */
+  height: 30px; /* Establece una altura fija */
+  padding: 5px 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #9d9380;
+  border-radius: 8px;
+  transition: 0.3s ease, transform 0.2s ease;
+  margin-right: 10px;
+}
+
+.btn-boton .btn-nuevo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px; /* Establece un ancho fijo para todos los botones */
+  height: 30px; /* Establece una altura fija */
+  padding: 5px 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #9d9380;
+  border-radius: 8px;
+  transition: 0.3s ease, transform 0.2s ease;
+}
+
+.btn-nuevo:hover {
+  background-color: rgb(236, 236, 236);
+  color: #9d9380;
+  transform: scale(1.05);
+}
+
+.btn-refrescar:hover {
+  background-color: rgb(236, 236, 236);
+  color: #9d9380;
+  transform: scale(1.05);
+}
+
 .a_body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   height: 100vh;
-  padding-top: 3rem;
+  padding-top: 10px;
 }
 
 .titulo td {
@@ -74,27 +128,55 @@ header {
   border-radius: 4px;
 }
 
-.t_body .boton-editar {
-  display: center;
-  width: 4.0625rem;
-  height: 1.5625rem;
-  padding: 0.25rem 0.75rem;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
+.t_body .btn-editar {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 15px;
   color: white;
-  background-color: #9d9380;
+  background-color: #18bb0f;
   border-radius: 8px;
-  font-size: 0.9375rem;
+  margin-right: 5px;
+  text-decoration: none;
+  transition: 0.3s ease, transform 0.2s ease;
+}
+
+.t_body .btn-eliminar {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 15px;
+  color: white;
+  text-decoration: none;
+  background-color: #ca2c2c;
+  border-radius: 8px;
+  transition: 0.3s ease, transform 0.2s ease;
+}
+
+.t_body .btn-editar i,
+.t_body .btn-eliminar i {
+  margin: auto;
+}
+
+.btn-editar:hover {
+  background-color: #13850d;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.btn-eliminar:hover {
+  background-color: #a31818;
+  color: #ffffff;
+  transform: scale(1.05);
 }
 
 .table {
   border-radius: 12px;
   border-collapse: separate;
-  width: 100%; /* Añadido para hacer la tabla responsiva */
-  max-width: 100%; /* Añadido para prevenir el desbordamiento en pantallas pequeñas */
-  margin: 0 auto; /* Centrar la tabla */
-  overflow-x: auto; /* Añadido para permitir el desplazamiento horizontal */
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-x: auto;
 }
 
 .container {

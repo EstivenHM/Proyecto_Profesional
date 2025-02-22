@@ -41,6 +41,10 @@ $result = mysqli_query($conexion,$query);
 
     <section>
         <div class="Home">
+            <div class="btn-boton">
+            <a href="Usuarios.php" class="btn-refrescar"><i class='bx bx-refresh' ></i>Refrescar</a>
+            <a href="Crearusuario.php" class="btn-nuevo"><i class='bx bx-plus'></i>Nuevo</a>
+            </div>
             <div class="a_body">
                 <table class="table">
                     <thead>
@@ -56,7 +60,9 @@ $result = mysqli_query($conexion,$query);
                             <td>Estado</td>
                             <td>Nivel</td>
                             <td>Rol</td>
-                            <td>Editar</td>
+                            <td>Acciones</td>
+                            
+
                         </tr>
                     </thead>
                     <tbody class="t_body">
@@ -73,7 +79,9 @@ $result = mysqli_query($conexion,$query);
                                 <td><?php echo $row['Estado'] ?></td>
                                 <td><?php echo $row['Nivel'] ?></td>
                                 <td><?php echo $row['Rol'] ?></td>
-                                <td><a href="editar_usuario.php" class="boton-editar">Editar</a></td>
+                                <td><a href="editar_usuario.php" class="btn-editar"><i class='bx bxs-pencil' ></i></a>
+                                <a href="#" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a></td>
+                                
                             </tr>
                         <?php } ?>
                     </tbody>
