@@ -5,14 +5,13 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
     header('Location: index.php');
     exit();
 }
+$username = $_SESSION['username'];
 
-include('lista_usuarios.php');
+include('funciones.php');
 $result = display_data();
-/*
-$query = "Select * from usuarios";
-$result = mysqli_query($conexion,$query);
-*/
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +32,7 @@ $result = mysqli_query($conexion,$query);
 <body>
 
     <header>
-        <h1 id="titulo">Bienvenido Estiven</h1>
+        <h1 id="titulo">Bienvenido <?php echo htmlspecialchars($username); ?></h1>
         <div class="Menu-header">
             <a href="Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
         </div>
@@ -42,8 +41,8 @@ $result = mysqli_query($conexion,$query);
     <section>
         <div class="Home">
             <div class="btn-boton">
-            <a href="Usuarios.php" class="btn-refrescar"><i class='bx bx-refresh' ></i>Refrescar</a>
-            <a href="Crearusuario.php" class="btn-nuevo"><i class='bx bx-plus'></i>Nuevo</a>
+                <a href="Usuarios.php" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</a>
+                <button class="btn-nuevo" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-plus'></i>Nuevo</button>
             </div>
             <div class="a_body">
                 <table class="table">
@@ -61,7 +60,7 @@ $result = mysqli_query($conexion,$query);
                             <td>Nivel</td>
                             <td>Rol</td>
                             <td>Acciones</td>
-                            
+
 
                         </tr>
                     </thead>
@@ -79,9 +78,10 @@ $result = mysqli_query($conexion,$query);
                                 <td><?php echo $row['Estado'] ?></td>
                                 <td><?php echo $row['Nivel'] ?></td>
                                 <td><?php echo $row['Rol'] ?></td>
-                                <td><a href="editar_usuario.php" class="btn-editar"><i class='bx bxs-pencil' ></i></a>
-                                <a href="#" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a></td>
-                                
+                                <td><a href="editar_usuario.php" class="btn-editar"><i class='bx bxs-pencil'></i></a>
+                                    <a href="#" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
+                                </td>
+
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -89,6 +89,71 @@ $result = mysqli_query($conexion,$query);
             </div>
 
         </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span onclick="document.getElementById('myModal').style.display='none'" class="close">&times;</span>
+                <form action="Crearusuario.php" method="post">
+                    <label for="tipo_cedula">Tipo de cédula:</label>
+                    <select id="t_cedula" name="t_cedula" required>
+                        <option value="" disabled selected>Seleccione</option>
+                        <option value="fisica">Fisica</option>
+                        <option value="juridica">Jurídica</option>
+                        <option value="Dimex">Dimex</option>
+                    </select>
+                    <br>
+                    <label for="cedula">Cédula:</label>
+                    <input type="text" id="cedula" name="cedula" required>
+                    <br>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    <br>
+                    <label for="apeliido">Apellido:</label>
+                    <input type="text" id="apellido1" name="apellido1" required>
+                    <br>
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido2" name="apellido2">
+                    <br>
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" required>
+                    <br>
+                    <label for="telefono">Telefono:</label>
+                    <input type="num" id="telefono" name="telefono" required>
+                    <br>
+                    <label for="pass">Contraseña:</label>
+                    <input type="password" id="pass" name="pass" required>
+                    <br>
+                    <label for="nivel">Nivel</label>
+                    <select id="nivel" name="nivel" required>
+                        <option value="" disabled selected>Seleccione</option>
+                        <option value="1">A1</option>
+                        <option value="2">A2</option>
+                        <option value="3">B1</option>
+                        <option value="4">B2</option>
+                        <option value="5">C1</option>
+                        <option value="6">C2</option>
+                    </select>
+                    <br>
+                    <input type="submit" value="Agregar Usuario">
+                </form>
+            </div>
+        </div>
+        <?php if (isset($_GET['success'])): ?>
+            <div class="modal-ok">
+                <div class="modal-conte">
+                    
+                    <p>Usuario agregado exitosamente.</p>
+                    <a href="Usuarios.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php elseif (isset($_GET['error'])): ?>
+            <div class="modal-not">
+                <div class="modal-cont">
+                    <h2>Vaya!</h2>
+                    <p>Hubo un error al agregar el usuario. Por favor, inténtelo de nuevo.</p>
+                    <a href="Usuarios.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php endif; ?>
     </section>
 
     <footer class="footer">

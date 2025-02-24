@@ -50,8 +50,8 @@ header {
 
 .btn-boton {
   display: flex;
-  justify-content: flex-end; /* Mueve el botón a la derecha */
-  width: 78%;
+  justify-content: flex-end; 
+  width: 100%;
   margin-top: 10px;
 }
 
@@ -59,8 +59,8 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 110px; /* Establece un ancho fijo para todos los botones */
-  height: 30px; /* Establece una altura fija */
+  width: 110px; 
+  height: 30px; 
   padding: 5px 10px;
   font-size: 18px;
   font-weight: bold;
@@ -77,15 +77,18 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px; /* Establece un ancho fijo para todos los botones */
-  height: 30px; /* Establece una altura fija */
+  width: 100px; 
+  height: 32px; 
   padding: 5px 10px;
   font-size: 18px;
+  margin-right: 15px;
   font-weight: bold;
   text-align: center;
   text-decoration: none;
   color: white;
   background-color: #9d9380;
+  font-family: inherit; 
+  text-transform: inherit;
   border-radius: 8px;
   transition: 0.3s ease, transform 0.2s ease;
 }
@@ -179,6 +182,81 @@ header {
   overflow-x: auto;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.modal-ok {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Contenido del modal */
+.modal-conte {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+}
+
+.close-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #18bb0f;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.close-link:hover {
+  background-color: #13850d;
+  cursor: pointer;
+}
+
+/*
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+*/
 .container {
   max-width: 1200px;
   margin: 0 auto;
