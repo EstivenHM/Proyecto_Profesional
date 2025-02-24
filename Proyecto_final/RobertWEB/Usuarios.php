@@ -41,7 +41,7 @@ $result = display_data();
     <section>
         <div class="Home">
             <div class="btn-boton">
-                <a href="Usuarios.php" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</a>
+                <button onclick="location.href='Usuarios.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
                 <button class="btn-nuevo" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-plus'></i>Nuevo</button>
             </div>
             <div class="a_body">
@@ -91,9 +91,9 @@ $result = display_data();
         </div>
         <div id="myModal" class="modal">
             <div class="modal-content">
-                <span onclick="document.getElementById('myModal').style.display='none'" class="close">&times;</span>
+
                 <form action="Crearusuario.php" method="post">
-                    <label for="tipo_cedula">Tipo de cédula:</label>
+                    <label for="tipo_cedula">Tipo de cédula</label><br>
                     <select id="t_cedula" name="t_cedula" required>
                         <option value="" disabled selected>Seleccione</option>
                         <option value="fisica">Fisica</option>
@@ -101,28 +101,28 @@ $result = display_data();
                         <option value="Dimex">Dimex</option>
                     </select>
                     <br>
-                    <label for="cedula">Cédula:</label>
+                    <label for="cedula">Cédula</label><br>
                     <input type="text" id="cedula" name="cedula" required>
                     <br>
-                    <label for="nombre">Nombre:</label>
+                    <label for="nombre">Nombre</label><br>
                     <input type="text" id="nombre" name="nombre" required>
                     <br>
-                    <label for="apeliido">Apellido:</label>
+                    <label for="apeliido">Apellido</label><br>
                     <input type="text" id="apellido1" name="apellido1" required>
                     <br>
-                    <label for="apellido">Apellido:</label>
+                    <label for="apellido">Apellido</label><br>
                     <input type="text" id="apellido2" name="apellido2">
                     <br>
-                    <label for="correo">Correo:</label>
+                    <label for="correo">Correo</label><br>
                     <input type="email" id="correo" name="correo" required>
                     <br>
-                    <label for="telefono">Telefono:</label>
+                    <label for="telefono">Telefono</label><br>
                     <input type="num" id="telefono" name="telefono" required>
                     <br>
-                    <label for="pass">Contraseña:</label>
+                    <label for="pass">Contraseña</label><br>
                     <input type="password" id="pass" name="pass" required>
                     <br>
-                    <label for="nivel">Nivel</label>
+                    <label for="nivel">Nivel</label><br>
                     <select id="nivel" name="nivel" required>
                         <option value="" disabled selected>Seleccione</option>
                         <option value="1">A1</option>
@@ -133,14 +133,15 @@ $result = display_data();
                         <option value="6">C2</option>
                     </select>
                     <br>
-                    <input type="submit" value="Agregar Usuario">
+                    <button type="submit" class="btn-guardar">Guardar</button>
+                    <button onclick="location.href='Usuarios.php'" class="btn-cancelar">Cerrar</button>
                 </form>
             </div>
         </div>
         <?php if (isset($_GET['success'])): ?>
             <div class="modal-ok">
                 <div class="modal-conte">
-                    
+
                     <p>Usuario agregado exitosamente.</p>
                     <a href="Usuarios.php" class="close-link">Cerrar</a>
                 </div>
@@ -151,6 +152,14 @@ $result = display_data();
                     <h2>Vaya!</h2>
                     <p>Hubo un error al agregar el usuario. Por favor, inténtelo de nuevo.</p>
                     <a href="Usuarios.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'cedula_exists'): ?>
+            <div class="modal-cedula">
+                <div class="modal-ced">
+                    <h2>El numero de cedula ya existe</h2>
+                    <p>Verifica los datos ingresados</p>
+                    <button class="btn-cerrar" onclick="document.getElementById('errorModal').style.display='none'">Cerrar</button>
                 </div>
             </div>
         <?php endif; ?>

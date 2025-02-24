@@ -14,17 +14,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT); // Encriptar la contraseña
     $nivel = $_POST['nivel'];
 
-    $query = "INSERT INTO usuarios (Tipo_cedula, Cedula, Nombre, Apellido_1, Apellido_2, Correo, Telefono, Password, Estado, Nivel, Rol)
-    VALUES('$tipo_cedula','$cedula', '$nombre', '$apellido1', '$apellido2', ' $correo', ' $telefono', '$pass','Activo', '$nivel', '3')";
+    $check_query = "SELECT * FROM usuarios WHERE Cedula='$cedula'";
+    $result = mysqli_query($conexion, $check_query);
 
-    if (mysqli_query($conexion, $query)) {
-        header("Location: Usuarios.php?success=true");
+    if (mysqli_num_rows($result) > 0) {
+        // La cédula ya existe
+        header("Location: Usuarios.php?error=cedula_exists");
     } else {
-        header("Location: Usuarios.php?error=true");
+        $query = "INSERT INTO usuarios (Tipo_cedula, Cedula, Nombre, Apellido_1, Apellido_2, Correo, Telefono, Password, Estado, Nivel, Rol)
+        VALUES('$tipo_cedula','$cedula', '$nombre', '$apellido1', '$apellido2', ' $correo', ' $telefono', '$pass','Activo', '$nivel', '3')";
+
+        if (mysqli_query($conexion, $query)) {
+            header("Location: Usuarios.php?success=true");
+        } else {
+            header("Location: Usuarios.php?error=true");
+        }
     }
 
     mysqli_close($conexion);
-   
-
     exit();
 }
+?>
