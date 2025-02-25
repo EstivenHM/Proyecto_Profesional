@@ -7,7 +7,7 @@
 
 body {
   font-family: "Times New Roman", Times, serif;
-  text-transform: capitalize;
+  height: 100vh;
 }
 
 header {
@@ -183,14 +183,19 @@ header {
 }
 
 .table {
-  border-radius: 12px;
-  border-collapse: separate;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
+  max-height: calc(100vh - 200px); /* Ajusta el valor según el tamaño del footer */
   overflow: auto;
+  width: 100%; /* Asegura que la tabla ocupe el 100% del ancho del contenedor */
+  table-layout: fixed; /* Fija el layout de la tabla para evitar desbordamientos */
 }
 
+@media (max-width: 768px) {
+  .table {
+    display: block;
+    overflow-x: auto;
+    width: 100%; /* Asegura que la tabla ocupe el 100% del ancho del contenedor */
+  }
+}
 .modal {
   display: none;
   position: fixed;
@@ -343,22 +348,6 @@ select {
   cursor: pointer;
   transform: scale(1.03);
 }
-
-/*
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-*/
 .container {
   max-width: 1200px;
   margin: 0 auto;

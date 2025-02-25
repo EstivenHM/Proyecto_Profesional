@@ -10,6 +10,14 @@ $username = $_SESSION['username'];
 include('funciones.php');
 $result = display_data();
 
+if (isset($_GET['edit_id'])) {
+    $user_data = get_user_data($_GET['edit_id']);
+}
+
+if (isset($_GET['delete_id'])) {
+    $user_delete = get_user_delete($_GET['delete_id']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -78,8 +86,9 @@ $result = display_data();
                                 <td><?php echo $row['Estado'] ?></td>
                                 <td><?php echo $row['Nivel'] ?></td>
                                 <td><?php echo $row['Rol'] ?></td>
-                                <td><a href="editar_usuario.php" class="btn-editar"><i class='bx bxs-pencil'></i></a>
-                                    <a href="#" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
+                                <td>
+                                    <a href="Usuarios.php?edit_id=<?php echo $row['Id_usuario']; ?>" class="btn-editar"><i class='bx bxs-pencil'></i></a>
+                                    <a href="Usuarios.php?delete_id=<?php echo $row['Id_usuario']; ?>" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
                                 </td>
 
                             </tr>
@@ -89,6 +98,9 @@ $result = display_data();
             </div>
 
         </div>
+
+        <!-- Modales opciones de usuarios-->
+
         <div id="myModal" class="modal">
             <div class="modal-content">
 
@@ -138,11 +150,103 @@ $result = display_data();
                 </form>
             </div>
         </div>
+
+        <?php if (isset($user_data)): ?>
+            <div id="myModal" class="modal" style="display:block;">
+                <div class="modal-content">
+                    <form action="editar_usuario.php" method="post">
+                        <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $user_data['Id_usuario']; ?>">
+
+                        <label for="tipo_cedula">Tipo de cédula</label><br>
+                        <select id="t_cedula" name="t_cedula" required disabled>
+                            <option value="" disabled>Seleccione</option>
+                            <option value="fisica" <?php if ($user_data['Tipo_cedula'] == 'fisica') echo 'selected'; ?>>Fisica</option>
+                            <option value="juridica" <?php if ($user_data['Tipo_cedula'] == 'juridica') echo 'selected'; ?>>Jurídica</option>
+                            <option value="Dimex" <?php if ($user_data['Tipo_cedula'] == 'Dimex') echo 'selected'; ?>>Dimex</option>
+                        </select>
+                        <br>
+
+                        <label for="cedula">Cédula</label><br>
+                        <input type="text" id="cedula" name="cedula" value="<?php echo $user_data['Cedula']; ?>" required readonly>
+                        <br>
+
+                        <label for="nombre">Nombre</label><br>
+                        <input type="text" id="nombre" name="nombre" value="<?php echo $user_data['Nombre']; ?>" required readonly>
+                        <br>
+
+                        <label for="apellido1">Apellido</label><br>
+                        <input type="text" id="apellido1" name="apellido1" value="<?php echo $user_data['Apellido_1']; ?>" required readonly>
+                        <br>
+
+                        <label for="apellido2">Apellido</label><br>
+                        <input type="text" id="apellido2" name="apellido2" value="<?php echo $user_data['Apellido_2']; ?>" readonly>
+                        <br>
+
+                        <label for="correo">Correo</label><br>
+                        <input type="email" id="correo" name="correo" value="<?php echo $user_data['Correo']; ?>" required readonly>
+                        <br>
+
+                        <label for="telefono">Teléfono</label><br>
+                        <input type="num" id="telefono" name="telefono" value="<?php echo $user_data['Telefono']; ?>" required readonly>
+                        <br>
+
+                        <label for="estado">Estado</label><br>
+                        <select id="estado" name="estado" required>
+                            <option value="">Seleccione</option>
+                            <option value="Activo" <?php if ($user_data['Estado'] == 'Activo') echo 'selected'; ?>>Activo</option>
+                            <option value="Inactivo" <?php if ($user_data['Estado'] == 'Inactivo') echo 'selected'; ?>>Inactivo</option>
+                        </select>
+                        <br>
+
+                        <label for="nivel">Nivel</label><br>
+                        <select id="nivel" name="nivel" required>
+                            <option value="">Seleccione</option>
+                            <option value="1" <?php if ($user_data['Nivel'] == '1') echo 'selected'; ?>>A1</option>
+                            <option value="2" <?php if ($user_data['Nivel'] == '2') echo 'selected'; ?>>A2</option>
+                            <option value="3" <?php if ($user_data['Nivel'] == '3') echo 'selected'; ?>>B1</option>
+                            <option value="4" <?php if ($user_data['Nivel'] == '4') echo 'selected'; ?>>B2</option>
+                            <option value="5" <?php if ($user_data['Nivel'] == '5') echo 'selected'; ?>>C1</option>
+                            <option value="6" <?php if ($user_data['Nivel'] == '6') echo 'selected'; ?>>C2</option>
+                        </select>
+                        <br>
+
+                        <button type="submit" class="btn-guardar">Guardar</button>
+                        <button type="button" onclick="location.href='Usuarios.php'" class="btn-cancelar">Cerrar</button>
+                    </form>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($user_delete)): ?>
+            <div class="modal-ok">
+                <div class="modal-conte">
+                <h2><i class='bx bx-error'></i></h2>
+                    <p>Estas seguro de eliminar este usuario?</p>
+                    <form action="eliminar_usuario.php" method="post">
+                     <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $user_delete['Id_usuario']; ?>">
+
+                     <button type="submit" class="btn-guardar">Eliminar</button>
+                     <button type="button" onclick="location.href='Usuarios.php'" class="btn-cancelar">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+            <?php endif; ?> 
+                    
+
+        <!-- Modales Mensajes-->
+
         <?php if (isset($_GET['success'])): ?>
             <div class="modal-ok">
                 <div class="modal-conte">
-
                     <p>Usuario agregado exitosamente.</p>
+                    <a href="Usuarios.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'cedula_exists'): ?>
+            <div class="modal-cedula">
+                <div class="modal-ced">
+                    <h2>El numero de cedula ya existe</h2>
+                    <p>Verifica los datos ingresados</p>
                     <a href="Usuarios.php" class="close-link">Cerrar</a>
                 </div>
             </div>
@@ -154,15 +258,44 @@ $result = display_data();
                     <a href="Usuarios.php" class="close-link">Cerrar</a>
                 </div>
             </div>
-        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'cedula_exists'): ?>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['success']) && $_GET['success']  == 'update'): ?>
+            <div class="modal-ok">
+                <div class="modal-conte">
+                    <h2><i class='bx bx-check'></i></h2>
+                    <p>Se han registrado los cambios correctamente</p>
+                    <a href="Usuarios.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'update'): ?>
             <div class="modal-cedula">
                 <div class="modal-ced">
-                    <h2>El numero de cedula ya existe</h2>
-                    <p>Verifica los datos ingresados</p>
-                    <button class="btn-cerrar" onclick="document.getElementById('errorModal').style.display='none'">Cerrar</button>
+                    <h2>Vaya!</h2>
+                    <p>No se a podido realizar cambios al usuario</p>
+                    <a href="Usuarios.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php endif; ?>
+
+        <?php if (isset($_GET['success']) && $_GET['success']  == 'delete'): ?>
+            <div class="modal-ok">
+                <div class="modal-conte">
+                    <h2><i class='bx bx-check'></i></h2>
+                    <p>Se elimino el usuario correctamente</p>
+                    <a href="Usuarios.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'delete'): ?>
+            <div class="modal-cedula">
+                <div class="modal-ced">
+                    <h2>Vaya!</h2>
+                    <p>No se a podido eliminar el usuario</p>
+                    <a href="Usuarios.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php endif; ?>
+
     </section>
 
     <footer class="footer">

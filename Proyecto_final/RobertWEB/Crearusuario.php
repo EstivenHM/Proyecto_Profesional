@@ -19,7 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_num_rows($result) > 0) {
         // La cédula ya existe
+
         header("Location: Usuarios.php?error=cedula_exists");
+        exit();
     } else {
         $query = "INSERT INTO usuarios (Tipo_cedula, Cedula, Nombre, Apellido_1, Apellido_2, Correo, Telefono, Password, Estado, Nivel, Rol)
         VALUES('$tipo_cedula','$cedula', '$nombre', '$apellido1', '$apellido2', ' $correo', ' $telefono', '$pass','Activo', '$nivel', '3')";

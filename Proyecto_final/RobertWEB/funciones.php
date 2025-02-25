@@ -9,3 +9,19 @@ function display_data()
     $result = mysqli_query($conexion, $query);
     return  $result;
 }
+
+function get_user_data($id_usuario)
+{
+    global $conexion;
+    $query = "SELECT * FROM usuarios WHERE Id_usuario = '$id_usuario'";
+    $result = mysqli_query($conexion, $query);
+    return mysqli_fetch_assoc($result);
+}
+
+function get_user_delete($id_usuario)
+{
+    global $conexion;
+    $query = "SELECT * FROM usuarios WHERE Id_usuario = '$id_usuario'";
+    $result = mysqli_query($conexion, $query);
+    return mysqli_fetch_assoc($result);
+}
