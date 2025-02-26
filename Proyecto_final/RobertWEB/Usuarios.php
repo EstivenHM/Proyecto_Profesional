@@ -52,22 +52,24 @@ if (isset($_GET['delete_id'])) {
                 <button onclick="location.href='Usuarios.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
                 <button class="btn-nuevo" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-plus'></i>Nuevo</button>
             </div>
-            <div class="a_body">
-                <table class="table">
+           
+            <div class="scrollable-table">
+                <div class="a_body">
+                <table class="table" style="margin: auto;">
                     <thead>
                         <tr class="titulo">
-                            <td>ID User</td>
-                            <td>Tipo de Cédula</td>
-                            <td>Cédula</td>
-                            <td>Nombre</td>
-                            <td>Apellido</td>
-                            <td>Apellido</td>
-                            <td>Correo</td>
-                            <td>Teléfono</td>
-                            <td>Estado</td>
-                            <td>Nivel</td>
-                            <td>Rol</td>
-                            <td>Acciones</td>
+                            <th>ID User</th>
+                            <th>Tipo de Cédula</th>
+                            <th>Cédula</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Apellido</th>
+                            <th>Correo</th>
+                            <th>Teléfono</th>
+                            <th>Estado</th>
+                            <th>Nivel</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
 
 
                         </tr>
@@ -95,6 +97,7 @@ if (isset($_GET['delete_id'])) {
                         <?php } ?>
                     </tbody>
                 </table>
+                </div>
             </div>
 
         </div>
