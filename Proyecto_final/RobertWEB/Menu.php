@@ -41,7 +41,7 @@ $username = $_SESSION['username'];
                     <input type="checkbox" id="submenu-toggle">
                     <label for="submenu-toggle" class="submenu-label"><i class='bx bxs-cog'></i>Mantenimientos</label>
                     <ul class="submenu-content">
-                        <li><a href="Usuarios.php" id="usuarios"><i class='bx bxs-user-detail'></i>Usuarios</a></li>
+                        <li><a href="users.php" id="usuarios"><i class='bx bxs-user-detail'></i>Usuarios</a></li>
                         <!--<li><a href="Crearusuario.php"id="Nuevo_usuario" ><i class='bx bxs-user-plus'></i>Nuevo usuario</a></li>-->
                         <li><a href="Roles.php" id="Roles"><i class='bx bxs-category'></i>Roles</a></li>
                         <li><li><a href="#" id="Permisos"><i class='bx bxs-key'></i>Permisos</a></li></li>

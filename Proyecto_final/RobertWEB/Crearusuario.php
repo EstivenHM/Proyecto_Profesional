@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $apellido2 = $_POST['apellido2'];
     $correo = $_POST['correo'];
     $telefono = $_POST['telefono'];
-    $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT); // Encriptar la contraseña
+    $pass = $_POST['pass']; 
     $nivel = $_POST['nivel'];
 
     $check_query = "SELECT * FROM usuarios WHERE Cedula='$cedula'";
@@ -20,16 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($result) > 0) {
         // La cédula ya existe
 
-        header("Location: Usuarios.php?error=cedula_exists");
+        header("Location: users.php?error=cedula_exists");
         exit();
     } else {
         $query = "INSERT INTO usuarios (Tipo_cedula, Cedula, Nombre, Apellido_1, Apellido_2, Correo, Telefono, Password, Estado, Nivel, Rol)
         VALUES('$tipo_cedula','$cedula', '$nombre', '$apellido1', '$apellido2', ' $correo', ' $telefono', '$pass','Activo', '$nivel', '3')";
 
         if (mysqli_query($conexion, $query)) {
-            header("Location: Usuarios.php?success=true");
+            header("Location: users.php?success=true");
         } else {
-            header("Location: Usuarios.php?error=true");
+            header("Location: users.php?error=true");
         }
     }
 

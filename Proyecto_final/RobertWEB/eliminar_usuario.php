@@ -10,10 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($conexion, $query)) {
        
-        header("Location: Usuarios.php?success=delete");
+        header("Location: users.php?success=delete");
     } else {
        
-        header("Location: Usuarios.php?error=delete");
+        header("Location: users.php?error=delete");
     }
 
     mysqli_close($conexion);

@@ -12,10 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($conexion, $query)) {
        
-        header("Location: Usuarios.php?success=update");
+        header("Location: users.php?success=update");
     } else {
        
-        header("Location: Usuarios.php?error=update");
+        header("Location: users.php?error=update");
     }
 
     mysqli_close($conexion);
