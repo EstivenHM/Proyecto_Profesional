@@ -25,3 +25,11 @@ function get_user_delete($id_usuario)
     $result = mysqli_query($conexion, $query);
     return mysqli_fetch_assoc($result);
 }
+
+function data_rol(){
+
+    global $conexion;
+    $query = "select * from roles";
+    $result = mysqli_query($conexion, $query);
+    return  $result;
+}

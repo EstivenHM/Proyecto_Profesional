@@ -1,3 +1,19 @@
+<?php
+session_start();
+if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
+    header('Location: index.php');
+    exit();
+}
+$username = $_SESSION['username'];
+
+include('funciones.php');
+$result = data_rol();
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,45 +42,38 @@
     <section>
 
         <div class="Home">
-
-            <div class="list-container">
-                <form method="post" action="">
-                    <input type="Combobox" name="search_left" placeholder="Buscar..."><br><br>
-                    <select name="left_list[]" multiple size="10">
-                        <!-- Opciones generadas dinámicamente por PHP -->
-                        <?php
-                        // Ejemplo estático
-                        echo '<option value="1">Estiven Hurtado</option>';
-                        echo '<option value="1">Roberto Cascante</option>';
-                        ?>
-                    </select><br><br>
-                    <button type="submit" name="move_right">&gt;</button>
-                </form>
+            <div class="btn-boton">
+                <button onclick="location.href='users.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
+                <button class="btn-nuevo" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-plus'></i>Nuevo</button>
             </div>
 
-            <div class="list-container">
-                <form method="post" action="">
-                    <input type="text" name="search_right" placeholder="Buscar..."><br><br>
-                    <select name="right_list[]" multiple size="10">
-                        <!-- Opciones generadas dinámicamente por PHP -->
-                        <?php
-                        // Ejemplo estático
-                        echo '<option value="2">Usuario 1</option>';
-                        echo '<option value="2">Estiven Hurtado</option>';
+            <div class="scrollable-table">
+                <table class="table">
+                    <thead>
+                        <tr class="titulo">
+                            <th class="id_col">ID rol</th>
+                            <th>Descripcion</th>
+                            <th>Detalles</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="t_body">
+                        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <tr>
+                                <td><?php echo $row['Id_rol'] ?></td>
+                                <td><?php echo $row['Descripcion'] ?></td>
+                                <td><?php echo $row['Detalles'] ?></td>
+                                <td>
+                                    <a href="Roles.php?edit_id=<?php echo $row['Id_rol']; ?>" class="btn-editar"><i class='bx bxs-pencil'></i></a>
+                                    <a href="Roles.php?delete_id=<?php echo $row['Id_rol']; ?>" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
+                                </td>
+                            </tr>
+                        <?php } ?>
 
-                        ?>
-                    </select><br><br>
-                    <button type="submit" name="move_left">&lt;</button>
-                </form>
-            </div>
-            <div class="save-button">
-                <form method="post" action="">
-                    <button type="submit" name="save_changes">Guardar cambios</button>
-                </form>
+                    </tbody>
+                </table>
             </div>
         </div>
-
-
     </section>
 
     <footer class="footer">

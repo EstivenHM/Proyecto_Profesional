@@ -9,7 +9,7 @@ body {
   font-family: "Times New Roman", Times, serif;
   text-transform: capitalize;
 }
-
+/* Header */
 header {
   background-color: rgb(25, 102, 157);
   padding: 33.3px 0;
@@ -20,7 +20,7 @@ header {
 
 .Menu-header a {
   position: absolute;
-  top: 40px; /* Ajusta según la altura deseada */
+  top: 40px; 
   right: 40px; /* Ajusta para moverlo a la derecha */
   font-size: 18px;
   color: white;
@@ -34,48 +34,142 @@ header {
   font-size: 20px;
 }
 
+/* Cuerpo */
 .Home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh; 
+  background: linear-gradient(to top, #04141f, #104062, #104062, #072235);
+  background-size: cover;
+ overflow: hidden; 
+  box-sizing: border-box;
+}
+/* Botones accion */
+.btn-boton {
+  display: flex;
+  justify-content: flex-end;
+
+  margin: 25px;
+  margin-bottom: 10px;
+}
+
+.btn-boton .btn-nuevo {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100vh; /* Ocupará toda la altura visible */
-  background: linear-gradient(to top, #04141f, #104062, #104062,#072235);
-  background-size: cover;
-  margin: 0; /* Elimina márgenes */
-  padding: 0; /* Elimina relleno */
-  box-sizing: border-box;
+  font-family: inherit;
+  text-transform: inherit;
+  color: white;
+  background-color: #9d9380;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: 0.3s ease, transform 0.2s ease;
 }
 
-.list-container {
-  margin: 0 10px;
-}
-
-.save-button {
+.btn-boton .btn-refrescar {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-}
-
-select {
-  width: 200px;
-  height: 200px;
-}
-
-button {
-  display: block;
-  margin: 10px auto;
-  padding: 10px 20px;
-  background-color: #1E7DC2;
+  align-items: center;
+  font-family: inherit;
+  text-transform: inherit;
+  margin-right: 10px;
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: #9d9380;
+  padding: 8px 15px;
+  font-size: 18px;
+  border-radius: 8px;
+  transition: 0.3s ease, transform 0.2s ease;
 }
 
-button:hover {
-  background-color: #19669D;
+.btn-nuevo:hover {
+  background-color: rgb(236, 236, 236);
+  color: #9d9380;
+  transform: scale(1.05);
+}
+
+.btn-refrescar:hover {
+  background-color: rgb(236, 236, 236);
+  color: #9d9380;
+  transform: scale(1.05);
+}
+
+/* tabla */
+.scrollable-table {
+  height: 500px;
+  overflow-y: auto;
+  overflow-x: auto;
+  flex-grow: 1; 
+  max-height: 500px;
+  width: 80%;
+  scroll-snap-type: y mandatory;
+}
+
+.scrollable-table > .table {
+  width: 100%;
+}
+
+.titulo th {
+  background-color: #000000;
+  color: #ffffff;
+  text-align: center;
+  position: sticky;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+  padding: 20px 30px;
+  font-size: 16px;
+}
+
+.t_body td {
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+  font-size: 15px;
+  padding: 7px 10px;
+}
+
+.t_body .btn-editar {
+  display: inline-flex;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #18bb0f;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  margin-right: 4px;
+  padding: 5px 14px;
+}
+
+.t_body .btn-eliminar {
+  display: inline-flex;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #ca2c2c;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 5px 14px;
+}
+
+.btn-editar:hover {
+  background-color: #13850d;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.btn-eliminar:hover {
+  background-color: #a31818;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+.table tr {
+  scroll-snap-align: start;
 }
 
 .container {
