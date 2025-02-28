@@ -43,7 +43,7 @@ $result = data_rol();
 
         <div class="Home">
             <div class="btn-boton">
-                <button onclick="location.href='users.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
+                <button onclick="location.href='Roles.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
                 <button class="btn-nuevo" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-plus'></i>Nuevo</button>
             </div>
 
@@ -51,19 +51,19 @@ $result = data_rol();
                 <table class="table">
                     <thead>
                         <tr class="titulo">
-                            <th class="id_col">ID rol</th>
+                            <th class="id-col">ID rol</th>
                             <th>Descripcion</th>
                             <th>Detalles</th>
-                            <th>Acciones</th>
+                            <th class="accion-col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody class="t_body">
                         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                             <tr>
-                                <td><?php echo $row['Id_rol'] ?></td>
+                                <td class="id-col"><?php echo $row['Id_rol'] ?></td>
                                 <td><?php echo $row['Descripcion'] ?></td>
                                 <td><?php echo $row['Detalles'] ?></td>
-                                <td>
+                                <td class="accion-col">
                                     <a href="Roles.php?edit_id=<?php echo $row['Id_rol']; ?>" class="btn-editar"><i class='bx bxs-pencil'></i></a>
                                     <a href="Roles.php?delete_id=<?php echo $row['Id_rol']; ?>" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
                                 </td>
@@ -74,6 +74,55 @@ $result = data_rol();
                 </table>
             </div>
         </div>
+
+        <!-- Modales-->
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+
+                <form action="crear_rol.php" method="post">
+
+                    <label for="Nombre_rol">Nombre del rol</label><br>
+                    <input type="text" id="nombre_rol" name="nombre_rol" required>
+                    <br>
+                    <label for="detalles">Detalles del rol</label><br>
+                    <input type="text" id="detalles" name="detalles" required>
+                    <br>
+                    <button type="submit" class="btn-guardar">Guardar</button>
+                    <button onclick="location.href='Roles.php'" class="btn-cancelar">Cerrar</button>
+
+                </form>
+            </div>
+        </div>
+
+         <!-- Modales Mensajes-->
+
+         <?php if (isset($_GET['success'])): ?>
+            <div class="modal-ok">
+                <div class="modal-conte">
+                    <p>Se agrego el rol correctamente</p>
+                    <a href="Roles.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'rol_exists'): ?>
+            <div class="modal-msj">
+                <div class="modal-ms">
+                    <h2>EL nombre del rol ya existe</h2>
+                    <p>Verifica los datos ingresados</p>
+                    <a href="Roles.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php elseif (isset($_GET['error'])): ?>
+            <div class="modal-not">
+                <div class="modal-cont">
+                    <h2>Vaya!</h2>
+                    <p>Hubo un error al agregar el rol. Por favor, inténtelo de nuevo.</p>
+                    <a href="Roles.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+
     </section>
 
     <footer class="footer">
