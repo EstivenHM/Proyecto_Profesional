@@ -43,3 +43,13 @@ function get_rol_delete($Id_rol)
     $result_delete = mysqli_query($conexion, $query);
     return mysqli_fetch_assoc($result_delete);
 }
+
+
+/* Funcion Ingresos y salidas */
+function IngresoSalida_data()
+{
+    global $conexion;
+    $query = "select * from b_logs";
+    $result = mysqli_query($conexion, $query);
+    return  $result;
+}

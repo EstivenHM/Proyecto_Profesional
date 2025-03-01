@@ -15,8 +15,6 @@ if (isset($_GET['delete_id'])) {
 
 ?>
 
-
-
 <!DOCTYPE html>
 
 <head>
@@ -35,7 +33,7 @@ if (isset($_GET['delete_id'])) {
 <body>
 
     <header>
-        <h1 id="titulo">Bienvenido Estiven</h1>
+        <h1 id="titulo">Bienvenido <?php echo htmlspecialchars($username); ?></h1>
         <div class="Menu-header">
             <a href="Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
         </div>
@@ -67,6 +65,7 @@ if (isset($_GET['delete_id'])) {
                                 <td><?php echo $row['Detalles'] ?></td>
                                 <td class="accion-col">
                                     <a href="Roles.php?edit_id=<?php echo $row['Id_rol']; ?>" class="btn-editar"><i class='bx bxs-pencil'></i></a>
+                                    <a href="Roles.php?edit_id=<?php echo $row['Id_rol']; ?>" class="btn-ajuste"><i class='bx bxs-cog'></i></a>
                                     <a href="Roles.php?delete_id=<?php echo $row['Id_rol']; ?>" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
                                 </td>
                             </tr>
@@ -75,7 +74,7 @@ if (isset($_GET['delete_id'])) {
                 </table>
             </div>
         </div>
-        
+
         <!-- Modales-->
         <div id="myModal" class="modal">
             <div class="modal-content">
@@ -95,17 +94,17 @@ if (isset($_GET['delete_id'])) {
         <?php if (isset($rol_delete)): ?>
             <div class="modal-ok">
                 <div class="modal-conte">
-                <h2><i class='bx bx-error'></i></h2>
+                    <h2><i class='bx bx-error'></i></h2>
                     <p>Estas seguro de eliminar este rol?</p>
                     <form action="eliminar_rol.php" method="post">
-                     <input type="hidden" id="Id_rol" name="Id_rol" value="<?php echo $rol_delete['Id_rol']; ?>">
+                        <input type="hidden" id="Id_rol" name="Id_rol" value="<?php echo $rol_delete['Id_rol']; ?>">
 
-                     <button type="submit" class="btn-guardar">Eliminar</button>
-                     <button type="button" onclick="location.href='Roles.php'" class="btn-cancelar">Cancelar</button>
+                        <button type="submit" class="btn-guardar">Eliminar</button>
+                        <button type="button" onclick="location.href='Roles.php'" class="btn-cancelar">Cancelar</button>
                     </form>
                 </div>
             </div>
-            <?php endif; ?> 
+        <?php endif; ?>
 
         <!-- Modales Mensajes-->
         <?php if (isset($_GET['success'])): ?>
