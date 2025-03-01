@@ -2,6 +2,7 @@
 
 include('Conexion.php');
 
+/* Funciones Usuarios*/ 
 function display_data()
 {
     global $conexion;
@@ -26,10 +27,19 @@ function get_user_delete($id_usuario)
     return mysqli_fetch_assoc($result);
 }
 
-function data_rol(){
+/* Funciones Roles*/
 
+function data_rol() {
     global $conexion;
-    $query = "select * from roles";
+    $query = "SELECT * FROM roles";
     $result = mysqli_query($conexion, $query);
-    return  $result;
+    return $result;
+}
+
+function get_rol_delete($Id_rol)
+{
+    global $conexion;
+    $query = "SELECT * FROM roles WHERE Id_rol = '$Id_rol'";
+    $result_delete = mysqli_query($conexion, $query);
+    return mysqli_fetch_assoc($result_delete);
 }

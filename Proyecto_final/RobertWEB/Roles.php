@@ -7,15 +7,17 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
 $username = $_SESSION['username'];
 
 include('funciones.php');
-$result = data_rol();
+$result =  data_rol();
 
-
+if (isset($_GET['delete_id'])) {
+    $rol_delete = get_rol_delete($_GET['delete_id']);
+}
 
 ?>
 
 
+
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -69,19 +71,15 @@ $result = data_rol();
                                 </td>
                             </tr>
                         <?php } ?>
-
                     </tbody>
                 </table>
             </div>
         </div>
-
+        
         <!-- Modales-->
-
         <div id="myModal" class="modal">
             <div class="modal-content">
-
                 <form action="crear_rol.php" method="post">
-
                     <label for="Nombre_rol">Nombre del rol</label><br>
                     <input type="text" id="nombre_rol" name="nombre_rol" required>
                     <br>
@@ -90,14 +88,27 @@ $result = data_rol();
                     <br>
                     <button type="submit" class="btn-guardar">Guardar</button>
                     <button onclick="location.href='Roles.php'" class="btn-cancelar">Cerrar</button>
-
                 </form>
             </div>
         </div>
 
-         <!-- Modales Mensajes-->
+        <?php if (isset($rol_delete)): ?>
+            <div class="modal-ok">
+                <div class="modal-conte">
+                <h2><i class='bx bx-error'></i></h2>
+                    <p>Estas seguro de eliminar este rol?</p>
+                    <form action="eliminar_rol.php" method="post">
+                     <input type="hidden" id="Id_rol" name="Id_rol" value="<?php echo $rol_delete['Id_rol']; ?>">
 
-         <?php if (isset($_GET['success'])): ?>
+                     <button type="submit" class="btn-guardar">Eliminar</button>
+                     <button type="button" onclick="location.href='Roles.php'" class="btn-cancelar">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+            <?php endif; ?> 
+
+        <!-- Modales Mensajes-->
+        <?php if (isset($_GET['success'])): ?>
             <div class="modal-ok">
                 <div class="modal-conte">
                     <p>Se agrego el rol correctamente</p>
@@ -122,9 +133,25 @@ $result = data_rol();
             </div>
         <?php endif; ?>
 
+        <?php if (isset($_GET['success']) && $_GET['success']  == 'delete'): ?>
+            <div class="modal-ok">
+                <div class="modal-conte">
+                    <h2><i class='bx bx-check'></i></h2>
+                    <p>Se elimino el usuario correctamente</p>
+                    <a href="Roles.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'delete'): ?>
+            <div class="modal-msj">
+                <div class="modal-ms">
+                    <h2>Vaya!</h2>
+                    <p>No se a podido eliminar el usuario</p>
+                    <a href="Roles.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php endif; ?>
 
     </section>
-
     <footer class="footer">
 
         <div class="container">
@@ -162,6 +189,7 @@ $result = data_rol();
 
         </div>
     </footer>
+
 </body>
 
 </html>
