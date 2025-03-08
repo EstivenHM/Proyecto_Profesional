@@ -62,3 +62,11 @@ function Libros_data()
     $result = mysqli_query($conexion, $query);
     return  $result;
 }
+
+function get_libro_data($id_materia)
+{
+    global $conexion;
+    $query = "SELECT * FROM material WHERE Id_materia = '$id_materia'";
+    $result = mysqli_query($conexion, $query);
+    return mysqli_fetch_assoc($result);
+}

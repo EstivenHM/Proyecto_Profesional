@@ -7,7 +7,7 @@
 
 body {
   font-family: "Times New Roman", Times, serif;
-  text-transform: capitalize;
+  
 }
 
 header {
@@ -271,7 +271,7 @@ select {
   overflow-x: auto;
   flex-grow: 1; 
   max-height: 500px;
-  width: 95%;
+  width: 96%;
   scroll-snap-type: y mandatory;
 }
 
@@ -290,6 +290,76 @@ select {
   padding: 20px 30px;
   font-size: 16px;
 }
+
+.t_body td {
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+  font-size: 15px;
+  padding: 7px 10px;
+}
+
+.t_body .btn-editar {
+  display: inline-flex;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #18bb0f;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  margin-right: 4px;
+  padding: 5px 14px;
+}
+
+.t_body .btn-open {
+  display: inline-flex;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #2c37ca;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 5px 14px;
+}
+
+.t_body .btn-eliminar {
+  display: inline-flex;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #ca2c2c;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 5px 14px;
+}
+
+.btn-editar:hover {
+  background-color: #13850d;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.btn-open:hover {
+  background-color: #1c2491;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.btn-eliminar:hover {
+  background-color: #a31818;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+.table tr {
+  scroll-snap-align: start;
+}
+
+
+
+
 .container {
   max-width: 1200px;
   margin: 0 auto;

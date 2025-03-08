@@ -9,7 +9,9 @@ $username = $_SESSION['username'];
 include('funciones.php');
 $result = Libros_data();
 
-
+if (isset($_GET['edit_id'])) {
+    $libro_data = get_libro_data($_GET['edit_id']);
+}
 ?>
 
 
@@ -52,18 +54,23 @@ $result = Libros_data();
                         <tr class="titulo">
 
                             <th>Nombre del libro</th>
-                            <th>tipo de archivo</th>
                             <th>Nivel</th>
+                            <th>Ruta del archivo</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody class="t_body">
                         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                             <tr>
+                                <td style="display: none;"><?php echo $row['Id_materia'] ?></td>
                                 <td><?php echo $row['Nombre'] ?></td>
                                 <td><?php echo $row['Nivel'] ?></td>
                                 <td><?php echo $row['archivo'] ?></td>
-
+                                <td>
+                                    <a href="Agregarlibro.php?edit_id=<?php echo $row['Id_materia']; ?>" class="btn-editar"><i class='bx bxs-pencil'></i></a>
+                                    <a href="<?php echo $row['archivo']; ?>" target="_blank" class="btn-open"><i class='bx bxs-book-open'></i></a>
+                                    <a href="Agregarlibro.php?delete_id=<?php echo $row['Id_materia']; ?>" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
+                                </td>
                             </tr>
                         <?php } ?>
 
@@ -73,6 +80,7 @@ $result = Libros_data();
         </div>
 
         <!------------Modales------------->
+        <!--------subir libro---------->
 
         <div id="myModal" class="modal">
             <div class="modal-content">
@@ -80,7 +88,8 @@ $result = Libros_data();
                     <label for="nombre">Nombre del libro</label><br>
                     <input type="text" id="nombre" name="nombre" required>
                     <br>
-                    <label for="nivel">Nivel</label><br>
+                    <label for="nivel">Nivel</label>
+                    <br>
                     <select id="nivel" name="nivel" required>
                         <option value="" disabled selected>Seleccione</option>
                         <option value="1">A1</option>
@@ -100,6 +109,33 @@ $result = Libros_data();
                 </form>
             </div>
         </div>
+        <!--------editar libro---------->
+
+        <?php if (isset($libro_data)): ?>
+            <div id="myModal" class="modal" style="display:block;">
+                <div class="modal-content">
+                    <form action="editar_material.php" method="POST">
+                        <input type="hidden" id="Id_materia" name="Id_materia" value="<?php echo $libro_data['Id_materia']; ?>">
+                        <label for="nombre">Nombre del libro</label><br>
+                        <input type="text" id="nombre" name="nombre" value="<?php echo $libro_data['Nombre']; ?>" required>
+                        <br>
+                        <label for="nivel">Nivel</label>
+                        <select id="nivel" name="nivel" required>
+                            <option value="" disabled>Seleccione</option>
+                            <option value="1" <?php if ($libro_data['Nivel'] == '1') echo 'selected'; ?>>A1</option>
+                            <option value="2" <?php if ($libro_data['Nivel'] == '2') echo 'selected'; ?>>A2</option>
+                            <option value="3" <?php if ($libro_data['Nivel'] == '3') echo 'selected'; ?>>B1</option>
+                            <option value="4" <?php if ($libro_data['Nivel'] == '4') echo 'selected'; ?>>B2</option>
+                            <option value="5" <?php if ($libro_data['Nivel'] == '5') echo 'selected'; ?>>C1</option>
+                            <option value="6" <?php if ($libro_data['Nivel'] == '6') echo 'selected'; ?>>C2</option>
+                        </select>
+                        <br>
+                        <button type="submit" class="btn-guardar">Guardar</button>
+                        <button type="button" onclick="location.href='Agregarlibro.php'" class="btn-cancelar">Cerrar</button>
+                    </form>
+                </div>
+            </div>
+        <?php endif; ?>
 
 
         <!--  Modales mensajes  -->
@@ -136,6 +172,24 @@ $result = Libros_data();
                 <div class="modal-ced">
                     <h2>Error de subida</h2>
                     <p>Hubo un problema al subir el archivo. Intente nuevamente.</p>
+                    <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['success']) && $_GET['success']  == 'editado'): ?>
+            <div class="modal-ok">
+                <div class="modal-conte">
+                    <h2><i class='bx bx-check'></i></h2>
+                    <p>Se han registrado los cambios correctamente</p>
+                    <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'editado'): ?>
+            <div class="modal-cedula">
+                <div class="modal-ced">
+                    <h2>Vaya!</h2>
+                    <p>No se a podido realizar cambios al documento</p>
                     <a href="Agregarlibro.php" class="close-link">Cerrar</a>
                 </div>
             </div>
