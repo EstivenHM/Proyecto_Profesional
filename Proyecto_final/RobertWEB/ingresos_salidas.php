@@ -41,6 +41,7 @@ $result = IngresoSalida_data();
                     <thead>
                         <tr class="titulo">
                             <th>Nombre del usuario</th>
+                            <th>Cedula del usuario</th>
                             <th>Accion</th>
                             <th>Hora</th>
                         </tr>
@@ -48,7 +49,8 @@ $result = IngresoSalida_data();
                     <tbody class="t_body">
                         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                             <tr>
-                                <td><?php echo $row['Nombre_usuario'] ?></td>
+                                <td><?php echo $row['Nombre'] ?></td>
+                                <td><?php echo $row['Cedula'] ?></td>
                                 <td><?php echo $row['Accion'] ?></td>
                                 <td><?php echo $row['Hora'] ?></td>
                             </tr>

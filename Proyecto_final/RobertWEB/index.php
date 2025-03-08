@@ -36,7 +36,7 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
                 <i class='bx bxs-lock'></i>
             </div>
             <div class="Forgot-password">
-                <a href="#">Forgot password</a>
+                <a href="#"></a>
             </div>
             <button type="submit" class="btn"> Login</button>
             <div class="contact">

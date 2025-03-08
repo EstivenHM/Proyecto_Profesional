@@ -15,7 +15,7 @@
 
 <body>
 
-<header>
+    <header>
         <h1 id="titulo">Bienvenido Estiven</h1>
         <div class="Menu-header">
             <a href="Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
@@ -24,46 +24,66 @@
     <seccion>
         <div class="Home">
 
+            <div class="btn-boton">
+                <button onclick="location.href='users.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
+                <button class="btn-nuevo" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-plus'></i>Nuevo</button>
+            </div>
+
+            <div class="scrollable-table">
+                <table class="table">
+                    <thead>
+                        <tr class="titulo">
+                            <th>Nombre</th>
+                            <th>Nombre del libro</th>
+                            <th>Nivel</th>
+                            <th>Acciones</th>
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+
 
         </div>
     </seccion>
     <footer class="footer">
 
-<div class="container">
-    <div class="footer-row">
-        <div class="footer-links">
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-links">
 
-            <h4>Acerca de</h4>
-            <ul>
-                <li><a href="#">Nosotros</a></li>
-                <li><a href="#">Mision</a></li>
-                <li><a href="#">Vision</a></li>
-            </ul>
-        </div>
+                    <h4>Acerca de</h4>
+                    <ul>
+                        <li><a href="#">Nosotros</a></li>
+                        <li><a href="#">Mision</a></li>
+                        <li><a href="#">Vision</a></li>
+                    </ul>
+                </div>
 
-        <div class="footer-links">
-            <h4> Ayuda </h4>
-            <ul>
-                <li><a href="#">Manual de uso</a></li>
-                <li><a href="#">contactanos</a></li>
-            </ul>
-        </div>
+                <div class="footer-links">
+                    <h4> Ayuda </h4>
+                    <ul>
+                        <li><a href="#">Manual de uso</a></li>
+                        <li><a href="#">contactanos</a></li>
+                    </ul>
+                </div>
 
-        <div class="footer-links">
-            <h4> Siguenos </h4>
-            <div class="social-links">
-                <a href="https://www.facebook.com/roberto.english.94" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/robertenglishcoach/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@rocascante11" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.tiktok.com/@robertenglishcoach?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <div class="footer-links">
+                    <h4> Siguenos </h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/roberto.english.94" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/robertenglishcoach/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@rocascante11" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@robertenglishcoach?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
-
-    </div>
-
-</div>
-</footer>
+    </footer>
 </body>
 
 </html>

@@ -37,7 +37,7 @@ if (isset($_GET['delete_id'])) {
     <header>
         <h1 id="titulo">Bienvenido <?php echo htmlspecialchars($username); ?></h1>
         <div class="Menu-header">
-            <a href="Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
+            <a href="Menu.php">INICIO<i class='bx bx-power-off'></i></a>
         </div>
     </header>
 

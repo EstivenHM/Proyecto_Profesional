@@ -19,11 +19,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario = $resultado->fetch_assoc();
         $_SESSION['authenticated'] = true;
         $_SESSION['username'] = $usuario['Nombre'];
+        $_SESSION['user_id'] =$usuario['Id_usuario'];
+        $Cedula = $usuario['Cedula'];
         $Accion = 'Ingreso al sistema';
         $Hora = date('Y-m-d H:i:s');
-        $sql = "INSERT INTO b_logs (Nombre_usuario, Accion, Hora) VALUES (?, ?, ?)";
+
+        $sql = "INSERT INTO b_ingresos (Nombre, Cedula, Accion, Hora) VALUES (?, ?, ?, ?)";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("sss", $usuario['Nombre'], $Accion, $Hora);
+        $stmt->bind_param("ssss", $usuario['Nombre'],$Cedula, $Accion, $Hora);
         $stmt->execute();
         $stmt->close();
         

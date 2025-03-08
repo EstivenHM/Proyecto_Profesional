@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
     header('Location: index.php');
-    exit(); 
+    exit();
 }
 $username = $_SESSION['username'];
 ?>
@@ -33,32 +33,42 @@ $username = $_SESSION['username'];
                 <span class="bottom_line common"></span>
             </div>
             <div class="slide">
-                <h2 class="menu-bar">MENU</h2>
-                <ul> 
+                <h2 id="subtitulo">MENU</h2>
+                <ul>
 
                     <li><a href="Agregarlibro.php" id="G_material"><i class='bx bxs-book-add'></i>Gestion de material</a></li>
-                    <li class="submenu">
-                    <input type="checkbox" id="submenu-toggle">
-                    <label for="submenu-toggle" class="submenu-label"><i class='bx bxs-cog'></i>Mantenimientos</label>
-                    <ul class="submenu-content">
-                        <li><a href="users.php" id="usuarios"><i class='bx bxs-user-detail'></i>Usuarios</a></li>
-                        <!--<li><a href="Crearusuario.php"id="Nuevo_usuario" ><i class='bx bxs-user-plus'></i>Nuevo usuario</a></li>-->
-                        <li><a href="Roles.php" id="Roles"><i class='bx bxs-category'></i>Roles</a></li>
-                        <li><li><a href="#" id="Permisos"><i class='bx bxs-key'></i>Permisos</a></li></li>
 
+                    <li class="submenu">
+                        <input type="checkbox" id="submenu-toggle">
+                        <label for="submenu-toggle" class="submenu-label"><i class='bx bxs-cog'></i>Mantenimientos</label>
+                        <ul class="submenu-content">
+                            <li><a href="users.php" id="usuarios"><i class='bx bxs-user-detail'></i>Usuarios</a></li>
+                            <li><a href="Roles.php" id="Roles"><i class='bx bxs-category'></i>Roles</a></li>
+                            <li>
+                            <li><a href="#" id="Permisos"><i class='bx bxs-key'></i>Permisos</a></li>
+                    </li>
+                </ul>
+                </li>
+
+                <li><a href="#"><i class='bx bxs-report'></i>Reportes</a></li>
+
+                <li class="submenu">
+                    <input type="checkbox" id="submenu-toggle-bitacoras">
+                    <label for="submenu-toggle-bitacoras" class="submenu-label"><i class='bx bxs-time'></i>Bitacoras</label>
+                    <ul class="submenu-content">
+                        <li><a href="ingresos_salidas.php" id="Ingreso_salida"><i class='bx bxs-time'></i>Ingresos salidas</a></li>
+                        <li><a href="#" id="movimientos"><i class='bx bx-history'></i>Movimientos</a></li>
                     </ul>
                 </li>
-                    <!--<li><a href="#"><i class='bx bxs-user-account'></i>Ajustes de cuenta</a></li>-->
-                    <li><a href="#"><i class='bx bxs-report'></i>Reportes</a></li>
-                    <li><a href="#"><i class='bx bxs-time'></i>Bitacoras</a></li>
-                    <li><a href="Logout.php"><i class='bx bxs-log-out'></i>Cerrar sesion</a></li>
+
+                <li><a href="Logout.php"><i class='bx bxs-log-out'></i>Cerrar sesion</a></li>
 
                 </ul>
             </div>
         </label>
-        <h1 id="titulo">Bienvenido <?php echo htmlspecialchars($username);?></h1>
+        <h1 id="titulo">Bienvenido <?php echo htmlspecialchars($username); ?></h1>
         <div class="Menu-header">
-            <a href="Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
+            <a href="Menu.php">INICIO<i class='bx bx-power-off'></i></a>
         </div>
 
 
@@ -70,13 +80,13 @@ $username = $_SESSION['username'];
             <div class="botones">
 
                 <a href="material.php" class="boton"><i class='bx bxs-book'></i>Material de clase</a>
-                <a href="#" class="boton"><i class='bx bxs-book-bookmark' ></i>Tareas</a>
+                <a href="#" class="boton"><i class='bx bxs-book-bookmark'></i>Tareas</a>
                 <a href="#" class="boton"><i class='bx bxs-user-account'></i>cuenta</a>
 
             </div>
 
         </div>
-        
+
 
     </seccion>
     <footer class="footer">

@@ -49,7 +49,16 @@ function get_rol_delete($Id_rol)
 function IngresoSalida_data()
 {
     global $conexion;
-    $query = "select * from b_logs";
+    $query = "select * from b_ingresos";
+    $result = mysqli_query($conexion, $query);
+    return  $result;
+}
+
+/* Funcion para gestion ver libros*/
+function Libros_data()
+{
+    global $conexion;
+    $query = "select * from material";
     $result = mysqli_query($conexion, $query);
     return  $result;
 }
