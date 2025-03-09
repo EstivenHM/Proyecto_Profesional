@@ -7,7 +7,12 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
 $username = $_SESSION['username'];
 
 include('funciones.php');
-$result = IngresoSalida_data();
+$usuario = isset($_POST['usuario']) ? $_POST['usuario'] : '';
+$fecha_inicio = isset($_POST['fecha_inicio']) ? $_POST['fecha_inicio'] : '';
+$fecha_fin = isset($_POST['fecha_fin']) ? $_POST['fecha_fin'] : '';
+
+$result = IngresoSalida_data($usuario, $fecha_inicio, $fecha_fin);
+
 
 ?>
 <!DOCTYPE html>
@@ -36,29 +41,57 @@ $result = IngresoSalida_data();
     <section>
         <div class="Home">
 
-        <div class="scrollable-table">
+            <div class="btn-boton">
+                <button onclick="location.href='ingresos_salidas.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
+                <button class="btn-filtro" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-filter'></i>Filtros</button>
+            </div>
+
+            <div class="scrollable-table">
                 <table class="table">
                     <thead>
                         <tr class="titulo">
-                            <th>Nombre del usuario</th>
-                            <th>Cedula del usuario</th>
-                            <th>Accion</th>
-                            <th>Hora</th>
+                            <th>Código de ingreso</th>
+                            <th>Usuario</th>
+                            <th>Cedula</th>
+                            <th>Hora ingreso</th>
+                            <th>Hora salida</th>
                         </tr>
                     </thead>
                     <tbody class="t_body">
                         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                             <tr>
+                                <td><?php echo $row['Id_log'] ?></td>
                                 <td><?php echo $row['Nombre'] ?></td>
                                 <td><?php echo $row['Cedula'] ?></td>
-                                <td><?php echo $row['Accion'] ?></td>
-                                <td><?php echo $row['Hora'] ?></td>
+                                <td><?php echo $row['Hora_entrada'] ?></td>
+                                <td><?php echo $row['Hora_salida'] ?></td>
                             </tr>
                         <?php } ?>
 
                     </tbody>
                 </table>
+            </div>
+
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <form action="ingresos_salidas.php" method="post">
+                        <label for="usuario">Usuario:</label>
+                        <input type="text" name="usuario" id="usuario">
+
+                        <label for="fecha_inicio">Fecha Inicio:</label>
+                        <input type="date" name="fecha_inicio" id="fecha_inicio">
+
+                        <label for="fecha_fin">Fecha Fin:</label>
+                        <input type="date" name="fecha_fin" id="fecha_fin"><br>
+
+                        <button type="submit" name="filtrar" class="btn-guardar">Filtrar</button>
+                        <button type="button" onclick="document.getElementById('myModal').style.display='none'" class="btn-cancelar">Cerrar</button>
+                    </form>
+                </div>
+            </div>
         </div>
+
 
     </section>
     <footer class="footer">

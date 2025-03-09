@@ -3,6 +3,7 @@
 session_start();
 include('Conexion.php');
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_usuario = $_POST['id_usuario'];
     $estado = $_POST['estado'];

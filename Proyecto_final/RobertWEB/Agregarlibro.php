@@ -7,11 +7,17 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
 $username = $_SESSION['username'];
 
 include('funciones.php');
+
 $result = Libros_data();
 
 if (isset($_GET['edit_id'])) {
     $libro_data = get_libro_data($_GET['edit_id']);
 }
+if (isset($_GET['delete_id'])) {
+    $libro_delete = get_delete_libro($_GET['delete_id']);
+}
+
+
 ?>
 
 
@@ -64,7 +70,7 @@ if (isset($_GET['edit_id'])) {
                             <tr>
                                 <td style="display: none;"><?php echo $row['Id_materia'] ?></td>
                                 <td><?php echo $row['Nombre'] ?></td>
-                                <td><?php echo $row['Nivel'] ?></td>
+                                <td><?php echo $row['descripcion']; ?></td>
                                 <td><?php echo $row['archivo'] ?></td>
                                 <td>
                                     <a href="Agregarlibro.php?edit_id=<?php echo $row['Id_materia']; ?>" class="btn-editar"><i class='bx bxs-pencil'></i></a>
@@ -77,123 +83,166 @@ if (isset($_GET['edit_id'])) {
                     </tbody>
                 </table>
             </div>
-        </div>
 
-        <!------------Modales------------->
-        <!--------subir libro---------->
 
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <form action="subirmaterial.php" method="post" enctype="multipart/form-data">
-                    <label for="nombre">Nombre del libro</label><br>
-                    <input type="text" id="nombre" name="nombre" required>
-                    <br>
-                    <label for="nivel">Nivel</label>
-                    <br>
-                    <select id="nivel" name="nivel" required>
-                        <option value="" disabled selected>Seleccione</option>
-                        <option value="1">A1</option>
-                        <option value="2">A2</option>
-                        <option value="3">B1</option>
-                        <option value="4">B2</option>
-                        <option value="5">C1</option>
-                        <option value="6">C2</option>
-                    </select>
-                    <br>
-                    <label for="file">Selecciona un archivo PDF:</label><br>
-                    <input type="file" name="archivo" id="archivo">
-                    <br>
-                    <button type="submit" class="btn-guardar">Guardar</button>
+            <!------------Modales------------->
+            <!--------subir libro---------->
 
-                    <button onclick="location.href='Agregarlibro.php'" class="btn-cancelar">Cerrar</button>
-                </form>
-            </div>
-        </div>
-        <!--------editar libro---------->
-
-        <?php if (isset($libro_data)): ?>
-            <div id="myModal" class="modal" style="display:block;">
+            <div id="myModal" class="modal">
                 <div class="modal-content">
-                    <form action="editar_material.php" method="POST">
-                        <input type="hidden" id="Id_materia" name="Id_materia" value="<?php echo $libro_data['Id_materia']; ?>">
+                    <form action="subirmaterial.php" method="post" enctype="multipart/form-data">
                         <label for="nombre">Nombre del libro</label><br>
-                        <input type="text" id="nombre" name="nombre" value="<?php echo $libro_data['Nombre']; ?>" required>
+                        <input type="text" id="nombre" name="nombre" required>
                         <br>
                         <label for="nivel">Nivel</label>
+                        <br>
                         <select id="nivel" name="nivel" required>
-                            <option value="" disabled>Seleccione</option>
-                            <option value="1" <?php if ($libro_data['Nivel'] == '1') echo 'selected'; ?>>A1</option>
-                            <option value="2" <?php if ($libro_data['Nivel'] == '2') echo 'selected'; ?>>A2</option>
-                            <option value="3" <?php if ($libro_data['Nivel'] == '3') echo 'selected'; ?>>B1</option>
-                            <option value="4" <?php if ($libro_data['Nivel'] == '4') echo 'selected'; ?>>B2</option>
-                            <option value="5" <?php if ($libro_data['Nivel'] == '5') echo 'selected'; ?>>C1</option>
-                            <option value="6" <?php if ($libro_data['Nivel'] == '6') echo 'selected'; ?>>C2</option>
+                            <option value="" disabled selected>Seleccione</option>
+                            <option value="1">A1</option>
+                            <option value="2">A2</option>
+                            <option value="3">B1</option>
+                            <option value="4">B2</option>
+                            <option value="5">C1</option>
+                            <option value="6">C2</option>
                         </select>
                         <br>
+                        <label for="file">Selecciona un archivo PDF:</label><br>
+                        <input type="file" name="archivo" id="archivo">
+                        <br>
                         <button type="submit" class="btn-guardar">Guardar</button>
-                        <button type="button" onclick="location.href='Agregarlibro.php'" class="btn-cancelar">Cerrar</button>
+
+                        <button onclick="location.href='Agregarlibro.php'" class="btn-cancelar">Cerrar</button>
                     </form>
                 </div>
             </div>
-        <?php endif; ?>
+            <!--------editar libro---------->
 
-
-        <!--  Modales mensajes  -->
-
-        <?php if (isset($_GET['success']) && $_GET['success'] == 'update'): ?>
-            <div class="modal-ok">
-                <div class="modal-conte">
-                    <h2><i class='bx bx-check'></i></h2>
-                    <p>Se ha creado el libro correctamente</p>
-                    <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+            <?php if (isset($libro_data)): ?>
+                <div id="myModal" class="modal" style="display:block;">
+                    <div class="modal-content">
+                        <form action="editar_material.php" method="POST">
+                            <input type="hidden" id="Id_materia" name="Id_materia" value="<?php echo $libro_data['Id_materia']; ?>">
+                            <label for="nombre">Nombre del libro</label><br>
+                            <input type="text" id="nombre" name="nombre" value="<?php echo $libro_data['Nombre']; ?>" required>
+                            <br>
+                            <label for="nivel">Nivel</label>
+                            <select id="nivel" name="nivel" required>
+                                <option value="" disabled>Seleccione</option>
+                                <option value="1" <?php if ($libro_data['Nivel'] == '1') echo 'selected'; ?>>A1</option>
+                                <option value="2" <?php if ($libro_data['Nivel'] == '2') echo 'selected'; ?>>A2</option>
+                                <option value="3" <?php if ($libro_data['Nivel'] == '3') echo 'selected'; ?>>B1</option>
+                                <option value="4" <?php if ($libro_data['Nivel'] == '4') echo 'selected'; ?>>B2</option>
+                                <option value="5" <?php if ($libro_data['Nivel'] == '5') echo 'selected'; ?>>C1</option>
+                                <option value="6" <?php if ($libro_data['Nivel'] == '6') echo 'selected'; ?>>C2</option>
+                            </select>
+                            <br>
+                            <button type="submit" class="btn-guardar">Guardar</button>
+                            <button type="button" onclick="location.href='Agregarlibro.php'" class="btn-cancelar">Cerrar</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
+            <!--------eliminar libro---------->
 
-        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'update'): ?>
-            <div class="modal-cedula">
-                <div class="modal-ced">
-                    <h2>Vaya!</h2>
-                    <p>No se pudo subir el material</p>
-                    <a href="Agregarlibro.php" class="close-link">Cerrar</a>
-                </div>
-            </div>
+            <?php if (isset($libro_delete)): ?>
+                <div class="modal-ok">
+                    <div class="modal-conte">
+                        <h2><i class='bx bx-error'></i></h2>
+                        <p>Estas seguro de eliminar este archivo?</p>
+                        <form action="eliminar_libro.php" method="post">
+                            <input type="hidden" id="Id_material" name="Id_material" value="<?php echo $libro_delete['Id_materia']; ?>">
 
-        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'pdf'): ?>
-            <div class="modal-cedula">
-                <div class="modal-ced">
-                    <h2>Formato inválido</h2>
-                    <p>Solo se permiten archivos PDF</p>
-                    <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                            <button type="submit" class="btn-guardar">Eliminar</button>
+                            <button type="button" onclick="location.href='Agregarlibro.php'" class="btn-cancelar">Cancelar</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
 
-        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'upload'): ?>
-            <div class="modal-cedula">
-                <div class="modal-ced">
-                    <h2>Error de subida</h2>
-                    <p>Hubo un problema al subir el archivo. Intente nuevamente.</p>
-                    <a href="Agregarlibro.php" class="close-link">Cerrar</a>
-                </div>
-            </div>
-        <?php endif; ?>
 
-        <?php if (isset($_GET['success']) && $_GET['success']  == 'editado'): ?>
-            <div class="modal-ok">
-                <div class="modal-conte">
-                    <h2><i class='bx bx-check'></i></h2>
-                    <p>Se han registrado los cambios correctamente</p>
-                    <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+            <!--  Modales mensajes  -->
+
+            <?php if (isset($_GET['success']) && $_GET['success'] == 'update'): ?>
+                <div class="modal-ok">
+                    <div class="modal-conte">
+                        <h2><i class='bx bx-check'></i></h2>
+                        <p>Se ha creado el libro correctamente</p>
+                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                    </div>
                 </div>
-            </div>
-        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'editado'): ?>
-            <div class="modal-cedula">
-                <div class="modal-ced">
-                    <h2>Vaya!</h2>
-                    <p>No se a podido realizar cambios al documento</p>
-                    <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+
+            <?php elseif (isset($_GET['error']) && $_GET['error'] == 'update'): ?>
+                <div class="modal-cedula">
+                    <div class="modal-ced">
+                        <h2>Vaya!</h2>
+                        <p>No se pudo subir el material</p>
+                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                    </div>
                 </div>
-            </div>
-        <?php endif; ?>
+
+            <?php elseif (isset($_GET['error']) && $_GET['error'] == 'pdf'): ?>
+                <div class="modal-cedula">
+                    <div class="modal-ced">
+                        <h2>Formato inválido</h2>
+                        <p>Solo se permiten archivos PDF</p>
+                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                    </div>
+                </div>
+
+            <?php elseif (isset($_GET['error']) && $_GET['error'] == 'upload'): ?>
+                <div class="modal-cedula">
+                    <div class="modal-ced">
+                        <h2>Error de subida</h2>
+                        <p>Hubo un problema al subir el archivo. Intente nuevamente.</p>
+                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <?php if (isset($_GET['success']) && $_GET['success']  == 'editado'): ?>
+                <div class="modal-ok">
+                    <div class="modal-conte">
+                        <h2><i class='bx bx-check'></i></h2>
+                        <p>Se han registrado los cambios correctamente</p>
+                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                    </div>
+                </div>
+            <?php elseif (isset($_GET['error']) && $_GET['error'] == 'editado'): ?>
+                <div class="modal-cedula">
+                    <div class="modal-ced">
+                        <h2>Vaya!</h2>
+                        <p>No se a podido realizar cambios al documento</p>
+                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <!--------eliminar libro---------->
+            <?php if (isset($_GET['success']) && $_GET['success']  == 'delete'): ?>
+                <div class="modal-ok">
+                    <div class="modal-conte">
+                        <h2><i class='bx bx-check'></i></h2>
+                        <p>Se elimino el archivo correctamente</p>
+                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                    </div>
+                </div>
+            <?php elseif (isset($_GET['error']) && $_GET['error'] == 'delete'): ?>
+                <div class="modal-cedula">
+                    <div class="modal-ced">
+                        <h2>Vaya!</h2>
+                        <p>No se a podido eliminar el archivo</p>
+                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                    </div>
+                </div>
+            <?php elseif (isset($_GET['error']) && $_GET['error'] == 'notfound'): ?>
+                <div class="modal-cedula">
+                    <div class="modal-ced">
+                        <h2>Vaya!</h2>
+                        <p>No se encontro el archivo</p>
+                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
 
     </seccion>
 

@@ -9,33 +9,21 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
     exit();
 }
 
-$userId = $_SESSION['user_id'];
-$Accion = 'Salida del sistema';
-$Hora = date('Y-m-d H:i:s');
+if (isset($_SESSION['Id_log'])) {
+    $id_log = $_SESSION['Id_log'];
+    $HoraSalida = date('Y-m-d H:i:s');
 
-// Obtener la cédula del usuario
-$consulta = $conexion->prepare("SELECT Cedula FROM usuarios WHERE Id_usuario = ?");
-$consulta->bind_param("i", $userId);
-$consulta->execute();
-$resultado = $consulta->get_result();
-$usuario = $resultado->fetch_assoc();
-$Cedula = $usuario['Cedula'];
-$consulta->close();
-
-// Insertar el registro de salida en la tabla b_ingresos
-$sql = "INSERT INTO b_ingresos (Nombre, Cedula, Accion, Hora) VALUES (?, ?, ?, ?)";
-$stmt = $conexion->prepare($sql);
-$stmt->bind_param("ssss", $_SESSION['username'], $Cedula, $Accion, $Hora);
-
-if ($stmt->execute()) {
-    // Éxito
-} else {
-    echo "Error: " . $stmt->error;
+    // Actualizar la hora de salida en el registro correspondiente
+    $sql = "UPDATE b_ingresos SET Hora_salida = ? WHERE Id_log = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("si", $HoraSalida, $id_log);
+    $stmt->execute();
+    $stmt->close();
 }
 
-$stmt->close();
 $conexion->close();
 
+// Destruir la sesión y cerrar la sesión del usuario
 session_unset();
 session_destroy();
 

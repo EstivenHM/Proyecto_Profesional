@@ -47,15 +47,27 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
         </form>
     </div>
 
-    <?php if (isset($_GET['error'])): ?>
-        <div class="modal">
-            <div class="modal-content">
-                <h2>Vaya!</h2>
+    <?php if (isset($_GET['error']) && $_GET['error'] == 'password'): ?>
+        <div class="modal-mensaje">
+            <div class="modal-msj">
+                <h2><i class='bx bxs-error'></i></h2>
                 <p>Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.</p>
                 <a href="index.php" class="close-link">Cerrar</a>
             </div>
         </div>
     <?php endif; ?>
+
+    <?php if (isset($_GET['error']) && $_GET['error'] == 'inactivo'): ?>
+            <div class="modal-mensaje">
+                <div class="modal-msj">
+                    <h2><i class='bx bxs-error'></i></h2>
+                    <p>Tu usuario se encuentra inactivo.</p>
+                    <p>Contacta con el administrador.</p>
+                    <a href="index.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php endif; ?>
+        
 </body>
 
 </html>

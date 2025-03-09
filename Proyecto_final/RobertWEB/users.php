@@ -80,8 +80,8 @@ if (isset($_GET['delete_id'])) {
                                 <td><?php echo $row['Correo'] ?></td>
                                 <td><?php echo $row['Telefono'] ?></td>
                                 <td><?php echo $row['Estado'] ?></td>
-                                <td><?php echo $row['Nivel'] ?></td>
-                                <td><?php echo $row['Rol'] ?></td>
+                                <td><?php echo $row['nivel_descripcion'] ?></td>
+                                <td><?php echo $row['rol_descripcion'] ?></td>
                                 <td>
                                     <a href="users.php?edit_id=<?php echo $row['Id_usuario']; ?>" class="btn-editar"><i class='bx bxs-pencil'></i></a>
                                     <a href="users.php?delete_id=<?php echo $row['Id_usuario']; ?>" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
@@ -105,8 +105,8 @@ if (isset($_GET['delete_id'])) {
                     <label for="tipo_cedula">Tipo de cédula</label><br>
                     <select id="t_cedula" name="t_cedula" required>
                         <option value="" disabled selected>Seleccione</option>
-                        <option value="fisica">Fisica</option>
-                        <option value="juridica">Jurídica</option>
+                        <option value="Fisica">Fisica</option>
+                        <option value="Juridica">Jurídica</option>
                         <option value="Dimex">Dimex</option>
                     </select>
                     <br>
@@ -242,6 +242,7 @@ if (isset($_GET['delete_id'])) {
         <?php elseif (isset($_GET['error']) && $_GET['error'] == 'cedula_exists'): ?>
             <div class="modal-cedula">
                 <div class="modal-ced">
+                    <h2><i class='bx bxs-error'></i></h2>
                     <h2>El numero de cedula ya existe</h2>
                     <p>Verifica los datos ingresados</p>
                     <a href="users.php" class="close-link">Cerrar</a>
@@ -250,7 +251,7 @@ if (isset($_GET['delete_id'])) {
         <?php elseif (isset($_GET['error'])): ?>
             <div class="modal-not">
                 <div class="modal-cont">
-                    <h2>Vaya!</h2>
+                    <h2><i class='bx bxs-error'></i></h2>
                     <p>Hubo un error al agregar el usuario. Por favor, inténtelo de nuevo.</p>
                     <a href="users.php" class="close-link">Cerrar</a>
                 </div>
@@ -268,7 +269,7 @@ if (isset($_GET['delete_id'])) {
         <?php elseif (isset($_GET['error']) && $_GET['error'] == 'update'): ?>
             <div class="modal-cedula">
                 <div class="modal-ced">
-                    <h2>Vaya!</h2>
+                    <h2><i class='bx bxs-error'></i></h2>
                     <p>No se a podido realizar cambios al usuario</p>
                     <a href="users.php" class="close-link">Cerrar</a>
                 </div>

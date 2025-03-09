@@ -48,7 +48,7 @@
 
             <h4>Acerca de</h4>
             <ul>
-                
+            <li><a href="Acerca_de.php">Nosotros</a></li>
             </ul>
         </div>
 

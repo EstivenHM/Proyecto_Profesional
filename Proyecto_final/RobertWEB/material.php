@@ -1,3 +1,18 @@
+<?php
+session_start();
+if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
+    header('Location: index.php');
+    exit();
+}
+$username = $_SESSION['username'];
+
+include('funciones.php');
+
+$result = Libros_data();
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -25,21 +40,35 @@
         <div class="Home">
 
             <div class="btn-boton">
-                <button onclick="location.href='users.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
-                <button class="btn-nuevo" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-plus'></i>Nuevo</button>
+                <button onclick="location.href='material.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
+                
             </div>
 
             <div class="scrollable-table">
                 <table class="table">
                     <thead>
                         <tr class="titulo">
-                            <th>Nombre</th>
+
                             <th>Nombre del libro</th>
                             <th>Nivel</th>
+                            
                             <th>Acciones</th>
-
                         </tr>
                     </thead>
+                    <tbody class="t_body">
+                        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <tr>
+                                <td style="display: none;"><?php echo $row['Id_materia'] ?></td>
+                                <td><?php echo $row['Nombre'] ?></td>
+                                <td><?php echo $row['descripcion']; ?></td>
+                                <td>
+                                    <a href="<?php echo $row['archivo']; ?>" target="_blank" class="btn-open"><i class='bx bxs-book-open'></i></a>
+                                   
+                                </td>
+                            </tr>
+                        <?php } ?>
+
+                    </tbody>
                 </table>
             </div>
 

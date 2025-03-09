@@ -97,9 +97,8 @@ $username = $_SESSION['username'];
 
                     <h4>Acerca de</h4>
                     <ul>
-                        <li><a href="#">Nosotros</a></li>
-                        <li><a href="#">Mision</a></li>
-                        <li><a href="#">Vision</a></li>
+                        <li><a href="Acerca_de.php">Nosotros</a></li>
+                        
                     </ul>
                 </div>
 
