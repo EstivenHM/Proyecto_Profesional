@@ -1,6 +1,6 @@
 <?php
 
-include('Conexion.php');
+include('../config/Conexion.php');
 
 /* Funciones Usuarios*/ 
 function display_data()
@@ -33,6 +33,17 @@ function get_user_delete($id_usuario)
     return mysqli_fetch_assoc($result);
 }
 
+function get_roles() {
+    global $conexion;
+    $query = "SELECT Id_rol, Descripcion FROM Roles";
+    $result = mysqli_query($conexion, $query);
+    $roles = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $roles[] = $row;
+    }
+    return $roles;
+}
+
 /* Funciones Roles*/
 
 function data_rol() {
@@ -48,6 +59,22 @@ function get_rol_delete($Id_rol)
     $query = "SELECT * FROM roles WHERE Id_rol = '$Id_rol'";
     $result_delete = mysqli_query($conexion, $query);
     return mysqli_fetch_assoc($result_delete);
+}
+
+function get_rol_permiso($rol_id) {
+    global $conexion;
+    $query = "SELECT p.Id_permisos, p.Descripcion, 
+                     CASE WHEN rp.IdPermisos IS NOT NULL THEN 1 ELSE 0 END AS asignado
+              FROM permisos p
+              LEFT JOIN roles_permisos rp ON p.Id_permisos = rp.IdPermisos AND rp.IdRol = $rol_id";
+
+    $result = mysqli_query($conexion, $query);
+    
+    $permisos = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $permisos[] = $row;
+    }
+    return $permisos;
 }
 
 
@@ -97,3 +124,5 @@ function get_delete_libro($Id_materia)
     $result_delete = mysqli_query($conexion, $query);
     return mysqli_fetch_assoc($result_delete);
 }
+
+/* Pantalla Roles*/

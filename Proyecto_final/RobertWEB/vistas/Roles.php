@@ -13,6 +13,10 @@ if (isset($_GET['delete_id'])) {
     $rol_delete = get_rol_delete($_GET['delete_id']);
 }
 
+if (isset($_GET['id_rol'])) {
+    $rol_id = $_GET['id_rol'];
+    $rol_permiso = get_rol_permiso($rol_id); // Llama a la función con el ID
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +69,7 @@ if (isset($_GET['delete_id'])) {
                                 <td><?php echo $row['Detalles'] ?></td>
                                 <td class="accion-col">
                                     <a href="Roles.php?edit_id=<?php echo $row['Id_rol']; ?>" class="btn-editar"><i class='bx bxs-pencil'></i></a>
-                                    <a href="Roles.php?edit_id=<?php echo $row['Id_rol']; ?>" class="btn-ajuste"><i class='bx bxs-cog'></i></a>
+                                    <a href="Roles.php?id_rol=<?php echo $row['Id_rol']; ?>" class="btn-ajuste"><i class='bx bxs-cog'></i></a>
                                     <a href="Roles.php?delete_id=<?php echo $row['Id_rol']; ?>" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
                                 </td>
                             </tr>
@@ -90,6 +94,29 @@ if (isset($_GET['delete_id'])) {
                 </form>
             </div>
         </div>
+
+        <?php if (isset($rol_id)): ?>
+            <div class="modal-permisos">
+                <div class="modal-permisos-content">
+                    <h2><i class='bx bx-lock'></i></h2>
+                    <p>Asignar Permisos</p>
+                    <form action="actualizar_permisos.php" method="post">
+                        <input type="hidden" name="id_rol" value="<?php echo $rol_id; ?>">
+                        <div id="listaPermisos">
+                            <?php foreach ($rol_permiso as $permiso): ?>
+                                <label>
+                                    <input type="checkbox" name="permisos[]" value="<?php echo $permiso['Id_permisos']; ?>"
+                                        <?php echo $permiso['asignado'] ? 'checked' : ''; ?>>
+                                    <?php echo htmlspecialchars($permiso['Descripcion']); ?>
+                                </label><br>
+                            <?php endforeach; ?>
+                        </div>
+                        <button type="submit" class="btn-guardar">Guardar</button>
+                        <button type="button" onclick="location.href='roles.php'" class="btn-cancelar">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        <?php endif; ?>
 
         <?php if (isset($rol_delete)): ?>
             <div class="modal-ok">

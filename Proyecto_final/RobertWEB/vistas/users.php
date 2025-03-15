@@ -11,11 +11,13 @@ $result = display_data();
 
 if (isset($_GET['edit_id'])) {
     $user_data = get_user_data($_GET['edit_id']);
+    $roles = get_roles();
 }
 
 if (isset($_GET['delete_id'])) {
     $user_delete = get_user_delete($_GET['delete_id']);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -46,8 +48,8 @@ if (isset($_GET['delete_id'])) {
         <div class="Home">
 
             <div class="btn-boton">
-                <button onclick="location.href='users.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
-                <button class="btn-nuevo" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-plus'></i>Nuevo</button>
+                <button onclick="location.href='users.php'" id="U_refrescar" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
+                <button class="btn-nuevo" id="U_nuevo" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-plus'></i>Nuevo</button>
             </div>
 
             <div class="scrollable-table">
@@ -83,8 +85,8 @@ if (isset($_GET['delete_id'])) {
                                 <td><?php echo $row['nivel_descripcion'] ?></td>
                                 <td><?php echo $row['rol_descripcion'] ?></td>
                                 <td>
-                                    <a href="users.php?edit_id=<?php echo $row['Id_usuario']; ?>" class="btn-editar"><i class='bx bxs-pencil'></i></a>
-                                    <a href="users.php?delete_id=<?php echo $row['Id_usuario']; ?>" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
+                                    <a href="users.php?edit_id=<?php echo $row['Id_usuario']; ?>" id="U_editar" class="btn-editar"><i class='bx bxs-pencil'></i></a>
+                                    <a href="users.php?delete_id=<?php echo $row['Id_usuario']; ?>" id="U_eliminar" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
                                 </td>
 
                             </tr>
@@ -95,8 +97,8 @@ if (isset($_GET['delete_id'])) {
             </div>
         </div>
 
-                        <!--Modales-->
-                         <!-- Modales opciones de usuarios-->
+        <!--Modales-->
+        <!-- Modales opciones de usuarios-->
 
         <div id="myModal" class="modal">
             <div class="modal-content">
@@ -206,6 +208,18 @@ if (isset($_GET['delete_id'])) {
                             <option value="6" <?php if ($user_data['Nivel'] == '6') echo 'selected'; ?>>C2</option>
                         </select>
                         <br>
+                        <label for="rol">Rol</label><br>
+                        <select id="rol" name="rol" required>
+                            <option value="">Seleccione</option>
+                            <?php
+                            $roles = get_roles();
+                            foreach ($roles as $rol) {
+                                $selected = ($user_data['Rol'] == $rol['Id_rol']) ? 'selected' : '';
+                                echo "<option value='{$rol['Id_rol']}' $selected>{$rol['Descripcion']}</option>";
+                            }
+                            ?>
+                        </select>
+                        <br>
 
                         <button type="submit" class="btn-guardar">Guardar</button>
                         <button type="button" onclick="location.href='users.php'" class="btn-cancelar">Cerrar</button>
@@ -217,18 +231,18 @@ if (isset($_GET['delete_id'])) {
         <?php if (isset($user_delete)): ?>
             <div class="modal-ok">
                 <div class="modal-conte">
-                <h2><i class='bx bx-error'></i></h2>
+                    <h2><i class='bx bx-error'></i></h2>
                     <p>Estas seguro de eliminar este usuario?</p>
                     <form action="eliminar_usuario.php" method="post">
-                     <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $user_delete['Id_usuario']; ?>">
+                        <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $user_delete['Id_usuario']; ?>">
 
-                     <button type="submit" class="btn-guardar">Eliminar</button>
-                     <button type="button" onclick="location.href='users.php'" class="btn-cancelar">Cancelar</button>
+                        <button type="submit" class="btn-guardar">Eliminar</button>
+                        <button type="button" onclick="location.href='users.php'" class="btn-cancelar">Cancelar</button>
                     </form>
                 </div>
             </div>
-            <?php endif; ?> 
-                    
+        <?php endif; ?>
+
 
         <!-- Modales Mensajes-->
 
