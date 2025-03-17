@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include('Conexion.php');
+include('../config/Conexion.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -11,10 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($conexion, $query)) {
        
-        header("Location: Roles.php?success=delete");
+        header("Location: ../vistas/Roles.php?success=delete");
     } else {
        
-        header("Location: Roles.php?error=delete");
+        header("Location: ../vistas/Roles.php?error=delete");
     }
 
     mysqli_close($conexion);

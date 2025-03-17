@@ -1,12 +1,12 @@
 <?php
 session_start();
 if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
-    header('Location: index.php');
+    header('Location: ../vistas/index.php');
     exit();
 }
 $username = $_SESSION['username'];
 
-include('funciones.php');
+include('../funciones/funciones.php');
 $result = display_data();
 
 if (isset($_GET['edit_id'])) {
@@ -25,7 +25,7 @@ if (isset($_GET['delete_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="Stylesheet" href="Stylecss/users.css">
+    <link rel="Stylesheet" href="../Stylecss/users.css">
     <link rel="Stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,7 +39,7 @@ if (isset($_GET['delete_id'])) {
     <header>
         <h1 id="titulo">Bienvenido <?php echo htmlspecialchars($username); ?></h1>
         <div class="Menu-header">
-            <a href="Menu.php">INICIO<i class='bx bx-power-off'></i></a>
+            <a href="../vistas/Menu.php">INICIO<i class='bx bx-power-off'></i></a>
         </div>
     </header>
 
@@ -48,7 +48,7 @@ if (isset($_GET['delete_id'])) {
         <div class="Home">
 
             <div class="btn-boton">
-                <button onclick="location.href='users.php'" id="U_refrescar" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
+                <button onclick="location.href='../vistas/users.php'" id="U_refrescar" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
                 <button class="btn-nuevo" id="U_nuevo" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-plus'></i>Nuevo</button>
             </div>
 
@@ -85,8 +85,8 @@ if (isset($_GET['delete_id'])) {
                                 <td><?php echo $row['nivel_descripcion'] ?></td>
                                 <td><?php echo $row['rol_descripcion'] ?></td>
                                 <td>
-                                    <a href="users.php?edit_id=<?php echo $row['Id_usuario']; ?>" id="U_editar" class="btn-editar"><i class='bx bxs-pencil'></i></a>
-                                    <a href="users.php?delete_id=<?php echo $row['Id_usuario']; ?>" id="U_eliminar" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
+                                    <a href="../vistas/users.php?edit_id=<?php echo $row['Id_usuario']; ?>" id="U_editar" class="btn-editar"><i class='bx bxs-pencil'></i></a>
+                                    <a href="../vistas/users.php?delete_id=<?php echo $row['Id_usuario']; ?>" id="U_eliminar" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
                                 </td>
 
                             </tr>
@@ -103,7 +103,7 @@ if (isset($_GET['delete_id'])) {
         <div id="myModal" class="modal">
             <div class="modal-content">
 
-                <form action="Crearusuario.php" method="post">
+                <form action="../funciones/Crearusuario.php" method="post">
                     <label for="tipo_cedula">Tipo de cédula</label><br>
                     <select id="t_cedula" name="t_cedula" required>
                         <option value="" disabled selected>Seleccione</option>
@@ -145,7 +145,7 @@ if (isset($_GET['delete_id'])) {
                     </select>
                     <br>
                     <button type="submit" class="btn-guardar">Guardar</button>
-                    <button onclick="location.href='users.php'" class="btn-cancelar">Cerrar</button>
+                    <button onclick="location.href='../vistas/users.php'" class="btn-cancelar">Cerrar</button>
                 </form>
             </div>
         </div>
@@ -153,7 +153,7 @@ if (isset($_GET['delete_id'])) {
         <?php if (isset($user_data)): ?>
             <div id="myModal" class="modal" style="display:block;">
                 <div class="modal-content">
-                    <form action="editar_usuario.php" method="post">
+                    <form action="../funciones/editar_usuario.php" method="post">
                         <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $user_data['Id_usuario']; ?>">
 
                         <label for="tipo_cedula">Tipo de cédula</label><br>
@@ -222,7 +222,7 @@ if (isset($_GET['delete_id'])) {
                         <br>
 
                         <button type="submit" class="btn-guardar">Guardar</button>
-                        <button type="button" onclick="location.href='users.php'" class="btn-cancelar">Cerrar</button>
+                        <button type="button" onclick="location.href='../vistas/users.php'" class="btn-cancelar">Cerrar</button>
                     </form>
                 </div>
             </div>
@@ -233,11 +233,11 @@ if (isset($_GET['delete_id'])) {
                 <div class="modal-conte">
                     <h2><i class='bx bx-error'></i></h2>
                     <p>Estas seguro de eliminar este usuario?</p>
-                    <form action="eliminar_usuario.php" method="post">
+                    <form action="../funciones/eliminar_usuario.php" method="post">
                         <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $user_delete['Id_usuario']; ?>">
 
                         <button type="submit" class="btn-guardar">Eliminar</button>
-                        <button type="button" onclick="location.href='users.php'" class="btn-cancelar">Cancelar</button>
+                        <button type="button" onclick="location.href='../vistas/users.php'" class="btn-cancelar">Cancelar</button>
                     </form>
                 </div>
             </div>
@@ -250,7 +250,7 @@ if (isset($_GET['delete_id'])) {
             <div class="modal-ok">
                 <div class="modal-conte">
                     <p>Usuario agregado exitosamente.</p>
-                    <a href="users.php" class="close-link">Cerrar</a>
+                    <a href="../vistas/users.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php elseif (isset($_GET['error']) && $_GET['error'] == 'cedula_exists'): ?>
@@ -259,7 +259,7 @@ if (isset($_GET['delete_id'])) {
                     <h2><i class='bx bxs-error'></i></h2>
                     <h2>El numero de cedula ya existe</h2>
                     <p>Verifica los datos ingresados</p>
-                    <a href="users.php" class="close-link">Cerrar</a>
+                    <a href="../vistas/users.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php elseif (isset($_GET['error'])): ?>
@@ -267,7 +267,7 @@ if (isset($_GET['delete_id'])) {
                 <div class="modal-cont">
                     <h2><i class='bx bxs-error'></i></h2>
                     <p>Hubo un error al agregar el usuario. Por favor, inténtelo de nuevo.</p>
-                    <a href="users.php" class="close-link">Cerrar</a>
+                    <a href="../vistas/users.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php endif; ?>
@@ -277,7 +277,7 @@ if (isset($_GET['delete_id'])) {
                 <div class="modal-conte">
                     <h2><i class='bx bx-check'></i></h2>
                     <p>Se han registrado los cambios correctamente</p>
-                    <a href="users.php" class="close-link">Cerrar</a>
+                    <a href="../vistas/users.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php elseif (isset($_GET['error']) && $_GET['error'] == 'update'): ?>
@@ -285,7 +285,7 @@ if (isset($_GET['delete_id'])) {
                 <div class="modal-ced">
                     <h2><i class='bx bxs-error'></i></h2>
                     <p>No se a podido realizar cambios al usuario</p>
-                    <a href="users.php" class="close-link">Cerrar</a>
+                    <a href="../vistas/users.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php endif; ?>
@@ -295,7 +295,7 @@ if (isset($_GET['delete_id'])) {
                 <div class="modal-conte">
                     <h2><i class='bx bx-check'></i></h2>
                     <p>Se elimino el usuario correctamente</p>
-                    <a href="users.php" class="close-link">Cerrar</a>
+                    <a href="../vistas/users.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php elseif (isset($_GET['error']) && $_GET['error'] == 'delete'): ?>
@@ -303,7 +303,7 @@ if (isset($_GET['delete_id'])) {
                 <div class="modal-ced">
                     <h2>Vaya!</h2>
                     <p>No se a podido eliminar el usuario</p>
-                    <a href="users.php" class="close-link">Cerrar</a>
+                    <a href="../vistas/users.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php endif; ?>

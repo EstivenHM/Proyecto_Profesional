@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include('Conexion.php');
+include('../config/Conexion.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -14,14 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($result) > 0) {
         // El rol ya existe
 
-        header("Location: Roles.php?error=rol_exists");
+        header("Location: ../vistas/Roles.php?error=rol_exists");
         exit();
     } else {
         $query = "INSERT INTO roles (Descripcion, Detalles) Values ('$Rol', '$Descripcion')";
         if (mysqli_query($conexion, $query)) {
-            header("Location: Roles.php?success=true");
+            header("Location: ../vistas/Roles.php?success=true");
         } else {
-            header("Location: Roles.php?error=true");
+            header("Location: ../vistas/Roles.php?error=true");
         }
     }
 

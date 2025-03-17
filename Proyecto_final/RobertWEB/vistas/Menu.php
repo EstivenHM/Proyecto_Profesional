@@ -7,7 +7,7 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
 $username = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
@@ -36,14 +36,14 @@ $username = $_SESSION['username'];
                 <h2 id="subtitulo">MENU</h2>
                 <ul>
 
-                    <li><a href="Agregarlibro.php" id="G_material"><i class='bx bxs-book-add'></i>Gestion de material</a></li>
+                    <li><a href="../vistas/Agregarlibro.php" id="G_material"><i class='bx bxs-book-add'></i>Gestion de material</a></li>
 
                     <li class="submenu">
                         <input type="checkbox" id="submenu-toggle">
                         <label for="submenu-toggle" class="submenu-label"><i class='bx bxs-cog'></i>Mantenimientos</label>
                         <ul class="submenu-content">
-                            <li><a href="users.php" id="usuarios"><i class='bx bxs-user-detail'></i>Usuarios</a></li>
-                            <li><a href="Roles.php" id="Roles"><i class='bx bxs-category'></i>Roles</a></li>
+                            <li><a href="../vistas/users.php" id="usuarios"><i class='bx bxs-user-detail'></i>Usuarios</a></li>
+                            <li><a href="../vistas/Roles.php" id="Roles"><i class='bx bxs-category'></i>Roles</a></li>
                             <li>
                             <li><a href="#" id="Permisos"><i class='bx bxs-key'></i>Permisos</a></li>
                     </li>
@@ -56,7 +56,7 @@ $username = $_SESSION['username'];
                     <input type="checkbox" id="submenu-toggle-bitacoras">
                     <label for="submenu-toggle-bitacoras" class="submenu-label"><i class='bx bxs-time'></i>Bitacoras</label>
                     <ul class="submenu-content">
-                        <li><a href="ingresos_salidas.php" id="Ingreso_salida"><i class='bx bxs-time'></i>Ingresos salidas</a></li>
+                        <li><a href="../vistas/ingresos_salidas.php" id="Ingreso_salida"><i class='bx bxs-time'></i>Ingresos salidas</a></li>
                         <li><a href="#" id="movimientos"><i class='bx bx-history'></i>Movimientos</a></li>
                     </ul>
                 </li>
@@ -68,7 +68,7 @@ $username = $_SESSION['username'];
         </label>
         <h1 id="titulo">Bienvenido <?php echo htmlspecialchars($username); ?></h1>
         <div class="Menu-header">
-            <a href="Menu.php">INICIO<i class='bx bx-power-off'></i></a>
+            <a href="../vistas/Menu.php">INICIO<i class='bx bx-power-off'></i></a>
         </div>
 
 
@@ -79,7 +79,7 @@ $username = $_SESSION['username'];
 
             <div class="botones">
 
-                <a href="material.php" id="material" class="boton"><i class='bx bxs-book'></i>Material de clase</a>
+                <a href="../vistas/material.php" id="material" class="boton"><i class='bx bxs-book'></i>Material de clase</a>
                 <a href="#" class="boton" id= "tareas"><i class='bx bxs-book-bookmark'></i>Tareas</a>
                 <a href="#" class="boton" id="cuenta"><i class='bx bxs-user-account'></i>cuenta</a>
 
@@ -97,7 +97,7 @@ $username = $_SESSION['username'];
 
                     <h4>Acerca de</h4>
                     <ul>
-                        <li><a href="Acerca_de.php">Nosotros</a></li>
+                        <li><a href="../vistas/Acerca_de.php">Nosotros</a></li>
                         
                     </ul>
                 </div>

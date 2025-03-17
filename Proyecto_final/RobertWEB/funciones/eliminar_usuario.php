@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include('Conexion.php');
+include('../config/Conexion.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_usuario = $_POST['id_usuario'];
@@ -10,10 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($conexion, $query)) {
        
-        header("Location: users.php?success=delete");
+        header("Location: ../vistas/users.php?success=delete");
     } else {
        
-        header("Location: users.php?error=delete");
+        header("Location: ../vistas/users.php?error=delete");
     }
 
     mysqli_close($conexion);

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="Stylesheet" href="Stylecss/Acerca_de.css">
+    <link rel="Stylesheet" href="../Stylecss/Acerca_de.css">
     <link rel="Stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
 <header>
         <h1 id="titulo">Bienvenido Estiven</h1>
         <div class="Menu-header">
-            <a href="Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
+            <a href="../vistas/Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
         </div>
     </header>
 
@@ -48,7 +48,7 @@
 
             <h4>Acerca de</h4>
             <ul>
-            <li><a href="Acerca_de.php">Nosotros</a></li>
+            <li><a href="../vistas/Acerca_de.php">Nosotros</a></li>
             </ul>
         </div>
 

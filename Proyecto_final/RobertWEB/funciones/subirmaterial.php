@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('Conexion.php');
+include('../config/Conexion.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Nombre_archivo = basename($_FILES["archivo"]["name"]);
     $extension = strtolower(pathinfo($Nombre_archivo, PATHINFO_EXTENSION));
 
-    $Destino = "uploads/Archivos/";
+    $Destino = "../uploads/Archivos/";
 
     // Verifica que la carpeta exista, si no, la crea
     if (!file_exists($Destino)) {
@@ -24,18 +24,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $result = mysqli_query($conexion, $sql);
 
             if ($result) {
-                header("Location: Agregarlibro.php?success=update");
+                header("Location: ../vistas/Agregarlibro.php?success=update");
                 exit;
             } else {
-                header("Location: Agregarlibro.php?error=update");
+                header("Location: ../vistas/Agregarlibro.php?error=update");
                 exit;
             }
         } else {
-            header("Location: Agregarlibro.php?error=upload");
+            header("Location: ../vistas/Agregarlibro.php?error=upload");
             exit;
         }
     } else {
-        header("Location: Agregarlibro.php?error=pdf");
+        header("Location: ../vistas/Agregarlibro.php?error=pdf");
         exit;
     }
 }

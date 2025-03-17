@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-include('Conexion.php');
-include('funciones.php');
+include('../config/Conexion.php');
+include('../funciones/funciones.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -24,13 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (mysqli_query($conexion, $query)) {
 
-            header("Location: Agregarlibro.php?success=delete");
+            header("Location: ../vistas/Agregarlibro.php?success=delete");
         } else {
 
-            header("Location: Agregarlibro.php?error=delete");
+            header("Location: ../vistas/Agregarlibro.php?error=delete");
         }
     } else {
-        header("Location: Agregarlibro.php?error=notfound");
+        header("Location: ../vistas/Agregarlibro.php?error=notfound");
     }
 
     mysqli_close($conexion);

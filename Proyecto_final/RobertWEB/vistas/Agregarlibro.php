@@ -1,12 +1,12 @@
 <?php
 session_start();
 if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
-    header('Location: index.php');
+    header('Location: ../vistas/index.php');
     exit();
 }
 $username = $_SESSION['username'];
 
-include('funciones.php');
+include('../funciones/funciones.php');
 
 $result = Libros_data();
 
@@ -28,7 +28,7 @@ if (isset($_GET['delete_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="Stylesheet" href="Stylecss/Gestionmaterial.css">
+    <link rel="Stylesheet" href="../Stylecss/Gestionmaterial.css">
     <link rel="Stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,7 @@ if (isset($_GET['delete_id'])) {
     <header>
         <h1 id="titulo">Bienvenido Estiven</h1>
         <div class="Menu-header">
-            <a href="Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
+            <a href="../vistas/Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
         </div>
     </header>
 
@@ -50,7 +50,7 @@ if (isset($_GET['delete_id'])) {
         <div class="Home">
 
             <div class="btn-boton">
-                <button onclick="location.href='Agregarlibro.php'" class="btn-refrescar" id="A_refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
+                <button onclick="location.href='../vistas/Agregarlibro.php'" class="btn-refrescar" id="A_refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
                 <button class="btn-nuevo" id="A_nuevo" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-plus'></i>Nuevo</button>
             </div>
 
@@ -73,9 +73,9 @@ if (isset($_GET['delete_id'])) {
                                 <td><?php echo $row['descripcion']; ?></td>
                                 <td><?php echo $row['archivo'] ?></td>
                                 <td>
-                                    <a href="Agregarlibro.php?edit_id=<?php echo $row['Id_materia']; ?>" id="A_editar" class="btn-editar"><i class='bx bxs-pencil'></i></a>
+                                    <a href="../vistas/Agregarlibro.php?edit_id=<?php echo $row['Id_materia']; ?>" id="A_editar" class="btn-editar"><i class='bx bxs-pencil'></i></a>
                                     <a href="<?php echo $row['archivo']; ?>" target="_blank" id="A_abrir" class="btn-open"><i class='bx bxs-book-open'></i></a>
-                                    <a href="Agregarlibro.php?delete_id=<?php echo $row['Id_materia']; ?>" id="A_eliminar" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
+                                    <a href="../vistas/Agregarlibro.php?delete_id=<?php echo $row['Id_materia']; ?>" id="A_eliminar" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -90,7 +90,7 @@ if (isset($_GET['delete_id'])) {
 
             <div id="myModal" class="modal">
                 <div class="modal-content">
-                    <form action="subirmaterial.php" method="post" enctype="multipart/form-data">
+                    <form action="../funciones/subirmaterial.php" method="post" enctype="multipart/form-data">
                         <label for="nombre">Nombre del libro</label><br>
                         <input type="text" id="nombre" name="nombre" required>
                         <br>
@@ -111,7 +111,7 @@ if (isset($_GET['delete_id'])) {
                         <br>
                         <button type="submit" class="btn-guardar">Guardar</button>
 
-                        <button onclick="location.href='Agregarlibro.php'" class="btn-cancelar">Cerrar</button>
+                        <button onclick="location.href='../vistasAgregarlibro.php'" class="btn-cancelar">Cerrar</button>
                     </form>
                 </div>
             </div>
@@ -120,7 +120,7 @@ if (isset($_GET['delete_id'])) {
             <?php if (isset($libro_data)): ?>
                 <div id="myModal" class="modal" style="display:block;">
                     <div class="modal-content">
-                        <form action="editar_material.php" method="POST">
+                        <form action="../funciones/editar_material.php" method="POST">
                             <input type="hidden" id="Id_materia" name="Id_materia" value="<?php echo $libro_data['Id_materia']; ?>">
                             <label for="nombre">Nombre del libro</label><br>
                             <input type="text" id="nombre" name="nombre" value="<?php echo $libro_data['Nombre']; ?>" required>
@@ -137,7 +137,7 @@ if (isset($_GET['delete_id'])) {
                             </select>
                             <br>
                             <button type="submit" class="btn-guardar">Guardar</button>
-                            <button type="button" onclick="location.href='Agregarlibro.php'" class="btn-cancelar">Cerrar</button>
+                            <button type="button" onclick="location.href='../vistas/Agregarlibro.php'" class="btn-cancelar">Cerrar</button>
                         </form>
                     </div>
                 </div>
@@ -149,11 +149,11 @@ if (isset($_GET['delete_id'])) {
                     <div class="modal-conte">
                         <h2><i class='bx bx-error'></i></h2>
                         <p>Estas seguro de eliminar este archivo?</p>
-                        <form action="eliminar_libro.php" method="post">
+                        <form action="../funciones/eliminar_libro.php" method="post">
                             <input type="hidden" id="Id_material" name="Id_material" value="<?php echo $libro_delete['Id_materia']; ?>">
 
                             <button type="submit" class="btn-guardar">Eliminar</button>
-                            <button type="button" onclick="location.href='Agregarlibro.php'" class="btn-cancelar">Cancelar</button>
+                            <button type="button" onclick="location.href='../vistas/Agregarlibro.php'" class="btn-cancelar">Cancelar</button>
                         </form>
                     </div>
                 </div>
@@ -167,7 +167,7 @@ if (isset($_GET['delete_id'])) {
                     <div class="modal-conte">
                         <h2><i class='bx bx-check'></i></h2>
                         <p>Se ha creado el libro correctamente</p>
-                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                        <a href="../vistas/Agregarlibro.php" class="close-link">Cerrar</a>
                     </div>
                 </div>
 
@@ -176,7 +176,7 @@ if (isset($_GET['delete_id'])) {
                     <div class="modal-ced">
                         <h2>Vaya!</h2>
                         <p>No se pudo subir el material</p>
-                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                        <a href="../vistas/Agregarlibro.php" class="close-link">Cerrar</a>
                     </div>
                 </div>
 
@@ -185,7 +185,7 @@ if (isset($_GET['delete_id'])) {
                     <div class="modal-ced">
                         <h2>Formato inválido</h2>
                         <p>Solo se permiten archivos PDF</p>
-                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                        <a href="../vistas/Agregarlibro.php" class="close-link">Cerrar</a>
                     </div>
                 </div>
 
@@ -194,7 +194,7 @@ if (isset($_GET['delete_id'])) {
                     <div class="modal-ced">
                         <h2>Error de subida</h2>
                         <p>Hubo un problema al subir el archivo. Intente nuevamente.</p>
-                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                        <a href="../vistas/Agregarlibro.php" class="close-link">Cerrar</a>
                     </div>
                 </div>
             <?php endif; ?>
@@ -204,7 +204,7 @@ if (isset($_GET['delete_id'])) {
                     <div class="modal-conte">
                         <h2><i class='bx bx-check'></i></h2>
                         <p>Se han registrado los cambios correctamente</p>
-                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                        <a href="../vistas/Agregarlibro.php" class="close-link">Cerrar</a>
                     </div>
                 </div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'editado'): ?>
@@ -212,7 +212,7 @@ if (isset($_GET['delete_id'])) {
                     <div class="modal-ced">
                         <h2>Vaya!</h2>
                         <p>No se a podido realizar cambios al documento</p>
-                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                        <a href="../vistas/Agregarlibro.php" class="close-link">Cerrar</a>
                     </div>
                 </div>
             <?php endif; ?>
@@ -222,7 +222,7 @@ if (isset($_GET['delete_id'])) {
                     <div class="modal-conte">
                         <h2><i class='bx bx-check'></i></h2>
                         <p>Se elimino el archivo correctamente</p>
-                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                        <a href="../vistas/Agregarlibro.php" class="close-link">Cerrar</a>
                     </div>
                 </div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'delete'): ?>
@@ -230,7 +230,7 @@ if (isset($_GET['delete_id'])) {
                     <div class="modal-ced">
                         <h2>Vaya!</h2>
                         <p>No se a podido eliminar el archivo</p>
-                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                        <a href="../vistas/Agregarlibro.php" class="close-link">Cerrar</a>
                     </div>
                 </div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'notfound'): ?>
@@ -238,7 +238,7 @@ if (isset($_GET['delete_id'])) {
                     <div class="modal-ced">
                         <h2>Vaya!</h2>
                         <p>No se encontro el archivo</p>
-                        <a href="Agregarlibro.php" class="close-link">Cerrar</a>
+                        <a href="../vistas/Agregarlibro.php" class="close-link">Cerrar</a>
                     </div>
                 </div>
             <?php endif; ?>

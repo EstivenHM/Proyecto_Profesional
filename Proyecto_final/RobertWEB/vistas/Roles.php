@@ -1,12 +1,12 @@
 <?php
 session_start();
 if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
-    header('Location: index.php');
+    header('Location: ../vistas/index.php');
     exit();
 }
 $username = $_SESSION['username'];
 
-include('funciones.php');
+include('../funciones/funciones.php');
 $result =  data_rol();
 
 if (isset($_GET['delete_id'])) {
@@ -24,7 +24,7 @@ if (isset($_GET['id_rol'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="Stylesheet" href="Stylecss/Roles.css">
+    <link rel="Stylesheet" href="../Stylecss/Roles.css">
     <link rel="Stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,7 +39,7 @@ if (isset($_GET['id_rol'])) {
     <header>
         <h1 id="titulo">Bienvenido <?php echo htmlspecialchars($username); ?></h1>
         <div class="Menu-header">
-            <a href="Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
+            <a href="../vistas/Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
         </div>
     </header>
 
@@ -47,7 +47,7 @@ if (isset($_GET['id_rol'])) {
 
         <div class="Home">
             <div class="btn-boton">
-                <button onclick="location.href='Roles.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
+                <button onclick="location.href='../vistas/Roles.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
                 <button class="btn-nuevo" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-plus'></i>Nuevo</button>
             </div>
 
@@ -68,9 +68,9 @@ if (isset($_GET['id_rol'])) {
                                 <td><?php echo $row['Descripcion'] ?></td>
                                 <td><?php echo $row['Detalles'] ?></td>
                                 <td class="accion-col">
-                                    <a href="Roles.php?edit_id=<?php echo $row['Id_rol']; ?>" class="btn-editar"><i class='bx bxs-pencil'></i></a>
-                                    <a href="Roles.php?id_rol=<?php echo $row['Id_rol']; ?>" class="btn-ajuste"><i class='bx bxs-cog'></i></a>
-                                    <a href="Roles.php?delete_id=<?php echo $row['Id_rol']; ?>" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
+                                    <a href="../vistas/Roles.php?edit_id=<?php echo $row['Id_rol']; ?>" class="btn-editar"><i class='bx bxs-pencil'></i></a>
+                                    <a href="../vistas/Roles.php?id_rol=<?php echo $row['Id_rol']; ?>" class="btn-ajuste"><i class='bx bxs-cog'></i></a>
+                                    <a href="../vistas/Roles.php?delete_id=<?php echo $row['Id_rol']; ?>" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -82,7 +82,7 @@ if (isset($_GET['id_rol'])) {
         <!-- Modales-->
         <div id="myModal" class="modal">
             <div class="modal-content">
-                <form action="crear_rol.php" method="post">
+                <form action="../funciones/crear_rol.php" method="post">
                     <label for="Nombre_rol">Nombre del rol</label><br>
                     <input type="text" id="nombre_rol" name="nombre_rol" required>
                     <br>
@@ -90,7 +90,7 @@ if (isset($_GET['id_rol'])) {
                     <input type="text" id="detalles" name="detalles" required>
                     <br>
                     <button type="submit" class="btn-guardar">Guardar</button>
-                    <button onclick="location.href='Roles.php'" class="btn-cancelar">Cerrar</button>
+                    <button onclick="location.href='../vistas/Roles.php'" class="btn-cancelar">Cerrar</button>
                 </form>
             </div>
         </div>
@@ -100,7 +100,7 @@ if (isset($_GET['id_rol'])) {
                 <div class="modal-permisos-content">
                     <h2><i class='bx bx-lock'></i></h2>
                     <p>Asignar Permisos</p>
-                    <form action="actualizar_permisos.php" method="post">
+                    <form action="../funciones/actualizar_permisos.php" method="post">
                         <input type="hidden" name="id_rol" value="<?php echo $rol_id; ?>">
                         <div id="listaPermisos">
                             <?php foreach ($rol_permiso as $permiso): ?>
@@ -112,7 +112,7 @@ if (isset($_GET['id_rol'])) {
                             <?php endforeach; ?>
                         </div>
                         <button type="submit" class="btn-guardar">Guardar</button>
-                        <button type="button" onclick="location.href='roles.php'" class="btn-cancelar">Cancelar</button>
+                        <button type="button" onclick="location.href='../vistas/roles.php'" class="btn-cancelar">Cancelar</button>
                     </form>
                 </div>
             </div>
@@ -123,11 +123,11 @@ if (isset($_GET['id_rol'])) {
                 <div class="modal-conte">
                     <h2><i class='bx bx-error'></i></h2>
                     <p>Estas seguro de eliminar este rol?</p>
-                    <form action="eliminar_rol.php" method="post">
+                    <form action="../funciones/eliminar_rol.php" method="post">
                         <input type="hidden" id="Id_rol" name="Id_rol" value="<?php echo $rol_delete['Id_rol']; ?>">
 
                         <button type="submit" class="btn-guardar">Eliminar</button>
-                        <button type="button" onclick="location.href='Roles.php'" class="btn-cancelar">Cancelar</button>
+                        <button type="button" onclick="location.href='../vistas/Roles.php'" class="btn-cancelar">Cancelar</button>
                     </form>
                 </div>
             </div>
@@ -138,7 +138,7 @@ if (isset($_GET['id_rol'])) {
             <div class="modal-ok">
                 <div class="modal-conte">
                     <p>Se agrego el rol correctamente</p>
-                    <a href="Roles.php" class="close-link">Cerrar</a>
+                    <a href="../vistas/Roles.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php elseif (isset($_GET['error']) && $_GET['error'] == 'rol_exists'): ?>
@@ -146,7 +146,7 @@ if (isset($_GET['id_rol'])) {
                 <div class="modal-ms">
                     <h2>EL nombre del rol ya existe</h2>
                     <p>Verifica los datos ingresados</p>
-                    <a href="Roles.php" class="close-link">Cerrar</a>
+                    <a href="../vistas/Roles.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php elseif (isset($_GET['error'])): ?>
@@ -154,7 +154,7 @@ if (isset($_GET['id_rol'])) {
                 <div class="modal-cont">
                     <h2>Vaya!</h2>
                     <p>Hubo un error al agregar el rol. Por favor, inténtelo de nuevo.</p>
-                    <a href="Roles.php" class="close-link">Cerrar</a>
+                    <a href="../vistas/Roles.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php endif; ?>
@@ -164,7 +164,7 @@ if (isset($_GET['id_rol'])) {
                 <div class="modal-conte">
                     <h2><i class='bx bx-check'></i></h2>
                     <p>Se elimino el usuario correctamente</p>
-                    <a href="Roles.php" class="close-link">Cerrar</a>
+                    <a href="../vistas/Roles.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php elseif (isset($_GET['error']) && $_GET['error'] == 'delete'): ?>
@@ -172,7 +172,7 @@ if (isset($_GET['id_rol'])) {
                 <div class="modal-ms">
                     <h2>Vaya!</h2>
                     <p>No se a podido eliminar el usuario</p>
-                    <a href="Roles.php" class="close-link">Cerrar</a>
+                    <a href="../vistas/Roles.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php endif; ?>

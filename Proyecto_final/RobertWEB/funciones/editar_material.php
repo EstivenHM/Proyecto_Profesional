@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include('Conexion.php');
+include('../config/Conexion.php');
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -15,9 +15,9 @@ $query = "UPDATE material SET Nombre ='$nombre', Nivel = '$nivel' WHERE Id_mater
 
 if(mysqli_query($conexion, $query)){
 
-    header("Location: Agregarlibro.php?success=editado");
+    header("Location: ../vistas/Agregarlibro.php?success=editado");
 }else {
-    header("Location: Agregarlibro.php?error=editado");
+    header("Location: ../vistas/Agregarlibro.php?error=editado");
 }
 
 mysqli_close($conexion);

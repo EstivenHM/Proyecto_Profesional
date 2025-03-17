@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include('Conexion.php');
+include('../config/Conexion.php');
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,10 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($conexion, $query)) {
        
-        header("Location: users.php?success=update");
+        header("Location: ../vistas/users.php?success=update");
     } else {
        
-        header("Location: users.php?error=update");
+        header("Location: ../vistas/users.php?error=update");
     }
 
     mysqli_close($conexion);

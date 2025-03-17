@@ -1,12 +1,12 @@
 <?php
 session_start();
 if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
-    header('Location: index.php');
+    header('Location: ../vistas/index.php');
     exit();
 }
 $username = $_SESSION['username'];
 
-include('funciones.php');
+include('../funciones/funciones.php');
 
 $result = Libros_data();
 
@@ -19,7 +19,7 @@ $result = Libros_data();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="Stylesheet" href="Stylecss/material.css">
+    <link rel="Stylesheet" href="../Stylecss/material.css">
     <link rel="Stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,14 +33,14 @@ $result = Libros_data();
     <header>
         <h1 id="titulo">Bienvenido Estiven</h1>
         <div class="Menu-header">
-            <a href="Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
+            <a href="../vistas/Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
         </div>
     </header>
     <seccion>
         <div class="Home">
 
             <div class="btn-boton">
-                <button onclick="location.href='material.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
+                <button onclick="location.href='../vistas/material.php'" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
                 
             </div>
 

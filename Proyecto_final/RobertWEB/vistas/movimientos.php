@@ -12,7 +12,7 @@
     <header>
         <h1 id="titulo">Bienvenido <?php echo htmlspecialchars($username); ?></h1>
         <div class="Menu-header">
-            <a href="Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
+            <a href="../vistas/Menu.php"><i class='bx bx-power-off'></i>INICIO</a>
         </div>
     </header>
 
@@ -32,7 +32,7 @@
 
                     <h4>Acerca de</h4>
                     <ul>
-                        <li><a href="Acerca_de.php">Nosotros</a></li>
+                        <li><a href="../vistas/Acerca_de.php">Nosotros</a></li>
 
                     </ul>
                 </div>

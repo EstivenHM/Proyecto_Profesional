@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include('Conexion.php');
+include('../config/Conexion.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tipo_cedula = $_POST['t_cedula'];
@@ -20,16 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($result) > 0) {
         // La cédula ya existe
 
-        header("Location: users.php?error=cedula_exists");
+        header("Location: ../vistas/users.php?error=cedula_exists");
         exit();
     } else {
         $query = "INSERT INTO usuarios (Tipo_cedula, Cedula, Nombre, Apellido_1, Apellido_2, Correo, Telefono, Password, Estado, Nivel, Rol)
         VALUES('$tipo_cedula','$cedula', '$nombre', '$apellido1', '$apellido2', ' $correo', ' $telefono', '$pass','Activo', '$nivel', '3')";
 
         if (mysqli_query($conexion, $query)) {
-            header("Location: users.php?success=true");
+            header("Location: ../vistas/users.php?success=true");
         } else {
-            header("Location: users.php?error=true");
+            header("Location: ../vistas/users.php?error=true");
         }
     }
 
