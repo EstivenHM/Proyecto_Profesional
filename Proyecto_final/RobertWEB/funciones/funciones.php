@@ -125,4 +125,41 @@ function get_delete_libro($Id_materia)
     return mysqli_fetch_assoc($result_delete);
 }
 
-/* Pantalla Roles*/
+/* Funcion tabla movimientos*/
+
+function Movimientos_data($conexion, $usuario = '', $fecha_inicio = '', $fecha_fin = '', $tipo_movimiento = '') {
+    
+    
+    $query = "SELECT bm.Id_movimiento, bm.Nombre, bm.Cedula, tm.Nombre_tipo, bm.Descripcion, bm.Hora_fecha 
+              FROM b_movimientos bm
+              JOIN tipo_movimientos tm ON bm.Tipo_movimiento = tm.Id_tipo
+              WHERE 1=1";
+
+    if (!empty($usuario)) {
+        $query .= " AND bm.Nombre LIKE '%$usuario%'";
+    }
+
+    if (!empty($fecha_inicio) && !empty($fecha_fin)) {
+        $query .= " AND DATE(bm.Hora_fecha) BETWEEN '$fecha_inicio' AND '$fecha_fin'";
+    }
+
+    if (!empty($tipo_movimiento)) {
+        $query .= " AND bm.Tipo_movimiento = $tipo_movimiento";
+    }
+
+    $result = mysqli_query($conexion, $query);
+    return $result;
+}
+
+function ObtenerTiposMovimientos($conexion) {
+    $query = "SELECT Id_tipo, Nombre_tipo FROM tipo_movimientos";
+    $result = mysqli_query($conexion, $query);
+
+    $tipos = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $tipos[] = $row;
+    }
+
+    return $tipos;
+}
+

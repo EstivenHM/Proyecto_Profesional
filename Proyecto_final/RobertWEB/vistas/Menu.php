@@ -57,7 +57,7 @@ $username = $_SESSION['username'];
                     <label for="submenu-toggle-bitacoras" class="submenu-label"><i class='bx bxs-time'></i>Bitacoras</label>
                     <ul class="submenu-content">
                         <li><a href="../vistas/ingresos_salidas.php" id="Ingreso_salida"><i class='bx bxs-time'></i>Ingresos salidas</a></li>
-                        <li><a href="#" id="movimientos"><i class='bx bx-history'></i>Movimientos</a></li>
+                        <li><a href="../vistas/movimientos.php" id="movimientos"><i class='bx bx-history'></i>Movimientos</a></li>
                     </ul>
                 </li>
 
