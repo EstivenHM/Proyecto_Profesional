@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_SESSION['username'];
         $Cedula = $_SESSION['Cedula'];
         $tipo = '1';
-        $Creacion = 'Creo un nuevo rol';
+        $Creacion = "Se creo el rol: $Rol";
         $Hora = date('Y-m-d H:i:s');
 
         $check_query = "SELECT * FROM roles WHERE Descripcion=?";

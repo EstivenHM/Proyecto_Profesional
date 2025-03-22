@@ -61,6 +61,14 @@ function get_rol_delete($Id_rol)
     return mysqli_fetch_assoc($result_delete);
 }
 
+function get_rol_edit($Id_rol)
+{
+    global $conexion;
+    $query = "SELECT * FROM roles WHERE Id_rol = '$Id_rol'";
+    $result_edit = mysqli_query($conexion, $query);
+    return mysqli_fetch_assoc($result_edit);
+}
+
 function get_rol_permiso($rol_id) {
     global $conexion;
     $query = "SELECT p.Id_permisos, p.Descripcion, 

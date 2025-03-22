@@ -13,9 +13,12 @@ if (isset($_GET['delete_id'])) {
     $rol_delete = get_rol_delete($_GET['delete_id']);
 }
 
+if (isset($_GET['edit_id'])) {
+    $rol_edit = get_rol_edit($_GET['edit_id']);
+}
 if (isset($_GET['id_rol'])) {
     $rol_id = $_GET['id_rol'];
-    $rol_permiso = get_rol_permiso($rol_id); // Llama a la función con el ID
+    $rol_permiso = get_rol_permiso($rol_id); 
 }
 ?>
 
@@ -95,6 +98,23 @@ if (isset($_GET['id_rol'])) {
             </div>
         </div>
 
+        <?php if (isset($rol_edit)): ?>
+            <div class="myModal">
+                <div class="modal-content">
+                    
+                    <form action="../funciones/editar_rol.php" method="post">
+                        <input type="hidden" id="Id_rol" name="Id_rol" value="<?php echo $rol_edit['Id_rol']; ?>">
+                        <label for="Nombre">Nombre del rol</label><br>
+                        <input type="text" id="Nombre" name="Nombre" value="<?php echo $rol_edit['Descripcion'] ?>" required><br>
+                        <label for="detalles">Detalles del rol</label><br>
+                        <input type="text" id="Detalles" name="Detalles" value="<?php echo $rol_edit['Detalles'] ?>" required><br>
+                        <button type="submit" class="btn-guardar">Guardar</button>
+                        <button type="button" onclick="location.href='../vistas/Roles.php'" class="btn-cancelar">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        <?php endif; ?>
+
         <?php if (isset($rol_id)): ?>
             <div class="modal-permisos">
                 <div class="modal-permisos-content">
@@ -167,6 +187,52 @@ if (isset($_GET['id_rol'])) {
             </div>
         <?php endif; ?>
 
+        <!-- -->
+
+        <?php if (isset($_GET['success']) && $_GET['success']  == 'update'): ?>
+            <div class="modal-ok">
+                <div class="modal-conte">
+                    <h2><i class='bx bx-check'></i></h2>
+                    <p>Se han registrado los cambios correctamente</p>
+                    <a href="../vistas/Roles.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'update'): ?>
+            <div class="modal-msj">
+                <div class="modal-ms">
+                    <h2>Vaya!</h2>
+                    <p>No se a podido realizar cambios al rol</p>
+                    <a href="../vistas/Roles.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+
+        <?php if (isset($_GET['error']) && $_GET['error'] == 'update_denegado'): ?>
+            <div class="modal-msj">
+                <div class="modal-ms">
+                    <h2>Vaya!</h2>
+                    <p>Este rol no puede ser modificado</p>
+                    <p>Contacta al administrador</p>
+                    <a href="../vistas/Roles.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['error']) && $_GET['error'] == 'delete_denegado'): ?>
+            <div class="modal-msj">
+                <div class="modal-ms">
+                    <h2>Vaya!</h2>
+                    <p>Este rol no puede ser eliminado</p>
+                    <p>Contacta al administrador</p>
+                    <a href="../vistas/Roles.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+
+
+        <!---->
         <?php if (isset($_GET['success']) && $_GET['success']  == 'delete'): ?>
             <div class="modal-ok">
                 <div class="modal-conte">
