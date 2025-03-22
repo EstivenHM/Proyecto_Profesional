@@ -157,6 +157,14 @@ if (isset($_GET['id_rol'])) {
                     <a href="../vistas/Roles.php" class="close-link">Cerrar</a>
                 </div>
             </div>
+        <?php elseif (isset($_GET['error']) && $_GET['error'] == 'exception'): ?>
+            <div class="modal-not">
+                <div class="modal-cont">
+                    <h2>Vaya!</h2>
+                    <p>Hubo un error al agregar el rol. Por favor, inténtelo de nuevo.</p>
+                    <a href="../vistas/Roles.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
         <?php endif; ?>
 
         <?php if (isset($_GET['success']) && $_GET['success']  == 'delete'): ?>
