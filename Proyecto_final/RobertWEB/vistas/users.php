@@ -5,9 +5,18 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
     exit();
 }
 $username = $_SESSION['username'];
-
+$Rol = $_SESSION['Rol'];
 include('../funciones/funciones.php');
 $result = display_data();
+
+function verificarPermiso($Rol)
+{
+    return in_array($Rol, [1, 2]);
+}
+if ((isset($_GET['edit_id']) || isset($_GET['delete_id'])) && !verificarPermiso($Rol)) {
+    header("Location: ../vistas/users.php?error=acceso_denegado");
+    exit();
+}
 
 if (isset($_GET['edit_id'])) {
     $user_data = get_user_data($_GET['edit_id']);
@@ -49,7 +58,11 @@ if (isset($_GET['delete_id'])) {
 
             <div class="btn-boton">
                 <button onclick="location.href='../vistas/users.php'" id="U_refrescar" class="btn-refrescar"><i class='bx bx-refresh'></i>Refrescar</button>
-                <button class="btn-nuevo" id="U_nuevo" onclick="document.getElementById('myModal').style.display='block'"><i class='bx bx-plus'></i>Nuevo</button>
+                <?php if (verificarPermiso($Rol)) { ?>
+                    <button class="btn-nuevo" id="U_nuevo" onclick="document.getElementById('myModal').style.display='block'">
+                        <i class='bx bx-plus'></i>Nuevo
+                    </button>
+                <?php } ?>
             </div>
 
             <div class="scrollable-table">
@@ -85,8 +98,12 @@ if (isset($_GET['delete_id'])) {
                                 <td><?php echo $row['nivel_descripcion'] ?></td>
                                 <td><?php echo $row['rol_descripcion'] ?></td>
                                 <td>
-                                    <a href="../vistas/users.php?edit_id=<?php echo $row['Id_usuario']; ?>" id="U_editar" class="btn-editar"><i class='bx bxs-pencil'></i></a>
-                                    <a href="../vistas/users.php?delete_id=<?php echo $row['Id_usuario']; ?>" id="U_eliminar" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
+                                    <?php if (verificarPermiso($Rol)) { ?>
+                                        <a href="../vistas/users.php?edit_id=<?php echo $row['Id_usuario']; ?>" id="U_editar" class="btn-editar"><i class='bx bxs-pencil'></i></a>
+                                        <a href="../vistas/users.php?delete_id=<?php echo $row['Id_usuario']; ?>" id="U_eliminar" class="btn-eliminar"><i class='bx bxs-x-circle'></i></a>
+                                    <?php } else { ?>
+                                        <span class="denegado">Sin permisos</span>
+                                    <?php } ?>
                                 </td>
 
                             </tr>
@@ -304,6 +321,16 @@ if (isset($_GET['delete_id'])) {
                     <h2>Vaya!</h2>
                     <p>No se a podido eliminar el usuario</p>
                     <a href="../vistas/users.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if (isset($_GET['error']) && $_GET['error'] == 'crear_denegado'): ?>
+            <div class="modal-msj">
+                <div class="modal-ms">
+                    <h2>Vaya!</h2>
+                    <p>no tienes permiso para realizar esta acción</p>
+                    <p>Contacta al administrador</p>
+                    <a href="../vistas/Roles.php" class="close-link">Cerrar</a>
                 </div>
             </div>
         <?php endif; ?>

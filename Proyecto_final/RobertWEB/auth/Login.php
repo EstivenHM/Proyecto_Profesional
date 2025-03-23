@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['username'] = $usuario['Nombre'];
         $_SESSION['user_id'] = $usuario['Id_usuario'];
         $_SESSION['Cedula'] = $usuario['Cedula'];
+        $_SESSION['Rol'] = $usuario['Rol'];
         $Accion = 'Ingreso al sistema';
         $Hora = date('Y-m-d H:i:s');
 
