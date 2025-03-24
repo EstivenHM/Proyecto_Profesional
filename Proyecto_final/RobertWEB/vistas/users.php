@@ -324,6 +324,7 @@ if (isset($_GET['delete_id'])) {
                 </div>
             </div>
         <?php endif; ?>
+        
         <?php if (isset($_GET['error']) && $_GET['error'] == 'crear_denegado'): ?>
             <div class="modal-msj">
                 <div class="modal-ms">
@@ -334,6 +335,17 @@ if (isset($_GET['delete_id'])) {
                 </div>
             </div>
         <?php endif; ?>
+        <?php if (isset($_GET['error']) && $_GET['error'] == 'delete_denegado'): ?>
+            <div class="modal-msj">
+                <div class="modal-ms">
+                    <h2>Vaya!</h2>
+                    <p>no tienes permiso para realizar esta acción</p>
+                    <p>Contacta al administrador</p>
+                    <a href="../vistas/users.php" class="close-link">Cerrar</a>
+                </div>
+            </div>
+        <?php endif; ?>
+
     </section>
 
     <footer class="footer">

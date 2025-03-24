@@ -201,7 +201,7 @@ if (isset($_GET['id_rol'])) {
             <div class="modal-msj">
                 <div class="modal-ms">
                     <h2>Vaya!</h2>
-                    <p>No se a podido realizar cambios al rol</p>
+                    <p>No se a podido realizar los cambios</p>
                     <a href="../vistas/Roles.php" class="close-link">Cerrar</a>
                 </div>
             </div>

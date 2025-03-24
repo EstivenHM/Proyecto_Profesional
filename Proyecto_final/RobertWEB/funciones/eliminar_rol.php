@@ -45,11 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
 
         // Registrar la eliminación en b_movimientos
-        $Creacion = "Se eliminó el rol: $RolDescripcion";
+        $accion = "Se eliminó el rol: $RolDescripcion";
         $sql = "INSERT INTO b_movimientos (Nombre, Cedula, Tipo_movimiento, Descripcion, Hora_fecha) 
                 VALUES (?, ?, ?, ?, ?)";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("ssiss", $username, $Cedula, $tipo, $Creacion, $Hora);
+        $stmt->bind_param("ssiss", $username, $Cedula, $tipo, $accion, $Hora);
         $stmt->execute();
 
         header("Location: ../vistas/Roles.php?success=delete");

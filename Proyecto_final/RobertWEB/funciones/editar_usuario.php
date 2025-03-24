@@ -40,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $stmt->get_result();
         if ($row = $result->fetch_assoc()) {
             $nombre = $row['Nombre'];
-        }else {
-            $nombre_usuario = "Desconocido"; 
+        } else {
+            $nombre = "Desconocido"; 
         }
         
         $user_id = $_SESSION['user_id'];
@@ -55,9 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $query = "UPDATE usuarios SET Estado = ?, Nivel = ?, Rol = ? WHERE Id_usuario = ?";
         $stm = $conexion->prepare($query);
-        $stm->bind_param("sii", $estado, $nivel, $Rol);
-        if (!$stmt->execute()) {
-            throw new Exception("Error al actualizar el rol: " . $stmt->error);
+        $stm->bind_param("siii", $estado, $nivel, $Rol,$id_usuario );
+        if (!$stm->execute()) {
+            throw new Exception("Error al actualizar el usuario: " . $stm->error);
         }
 
         $sql = "INSERT INTO b_movimientos (Nombre, Cedula, Tipo_movimiento, Descripcion, Hora_fecha) 

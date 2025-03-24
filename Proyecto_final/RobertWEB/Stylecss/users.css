@@ -103,13 +103,14 @@ header {
   transform: scale(1.05);
 }
 
+/*tabla principal*/
 .scrollable-table {
   height: 500px;
   overflow-y: auto;
   overflow-x: auto;
   flex-grow: 1; 
   max-height: 500px;
-  width: 96%;
+  width: 97%;
   scroll-snap-type: y mandatory;
 }
 
