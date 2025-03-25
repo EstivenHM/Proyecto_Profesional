@@ -5,7 +5,7 @@ session_start();
 date_default_timezone_set('America/Costa_Rica');
 
 if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit();
 }
 
@@ -27,5 +27,5 @@ $conexion->close();
 session_unset();
 session_destroy();
 
-header("Location: ../vistas/index.php");
+header("Location: ../index.php");
 exit();

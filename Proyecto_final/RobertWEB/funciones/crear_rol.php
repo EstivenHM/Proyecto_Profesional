@@ -7,7 +7,7 @@ date_default_timezone_set('America/Costa_Rica');
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
 
 if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit();
 }
 

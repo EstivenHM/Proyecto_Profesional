@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario = $resultado->fetch_assoc();
 
         if (strtolower(trim($usuario['Estado'])) !== 'activo') {
-            header("Location: ../vistas/index.php?error=inactivo");
+            header("Location: ../index.php?error=inactivo");
             exit();
         }
 
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     } else {
         
-        header("Location: ../vistas/index.php?error=password");
+        header("Location: ../index.php?error=password");
         exit();
     }
 

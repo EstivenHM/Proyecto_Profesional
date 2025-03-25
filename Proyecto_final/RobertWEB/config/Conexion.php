@@ -1,9 +1,9 @@
 <?php
 
 $server = "localhost";
-$user = "root";
-$pass = "";
-$db = "robertdb";
+$user = "u503671396_RECWEB";
+$pass = "Recweb2025";
+$db = "u503671396_robertdb";
 
 $conexion = new mysqli($server, $user, $pass, $db);
 

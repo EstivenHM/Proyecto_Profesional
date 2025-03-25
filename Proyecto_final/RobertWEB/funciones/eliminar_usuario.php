@@ -5,7 +5,7 @@ include('../config/Conexion.php');
 date_default_timezone_set('America/Costa_Rica');
 
 if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit();
 }
 
